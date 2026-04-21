@@ -1,0 +1,107 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { SITE_TITLE } from '../../consts';
+
+const trackA = [
+  'Back Attack System',
+  'Back Control Defence',
+  'Front Headlock System',
+  'Front Headlock Defence',
+  'Top Turtle System',
+  'Bottom Turtle Defence',
+  'Pinning System',
+  'Pin Escapes',
+  'Pin Submissions',
+  'Pin Submission Escapes',
+];
+
+const trackB = [
+  'Passing System',
+  'Guard Retention',
+  'Offensive Guard System',
+  'Offensive Leg Lock System',
+  'Leg Lock Defence',
+  'Offensive Wrestling System',
+  'Defensive Wrestling',
+  'Wrestle Up System',
+  'Scrambling',
+];
+---
+
+<Layout
+  title={`System Map — ${SITE_TITLE}`}
+  description="All 19 no-gi grappling systems, grouped by Track A (definable) and Track B (framework)."
+>
+  <style>
+    h1 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+      line-height: 1.3;
+    }
+
+    .intro {
+      line-height: 1.75;
+      margin-bottom: 2.5rem;
+      color: #555;
+    }
+
+    h2 {
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      margin-top: 2.5rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .track-label {
+      font-size: 0.85rem;
+      color: #888;
+      margin-bottom: 1rem;
+      margin-top: 0;
+    }
+
+    ol {
+      padding-left: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    li {
+      line-height: 1.75;
+      margin-bottom: 0.25rem;
+    }
+
+    li a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    li a:hover {
+      text-decoration: underline;
+    }
+  </style>
+
+  <h1>System map</h1>
+  <p class="intro">
+    19 systems covering the full scope of high-level no-gi grappling. Track A systems are
+    closed enough to document completely. Track B systems require ongoing framework documentation
+    — they are too open to ever finish.
+  </p>
+
+  <h2>Track A — Definable systems</h2>
+  <p class="track-label">Bounded enough to flowchart. Finite decision trees exist.</p>
+  <ol>
+    {trackA.map((name) => (
+      <li><a href="#">{name}</a></li>
+    ))}
+  </ol>
+
+  <h2>Track B — Framework systems</h2>
+  <p class="track-label">Too large and dynamic to close. Governed by principles and sub-systems.</p>
+  <ol>
+    {trackB.map((name) => (
+      <li><a href="#">{name}</a></li>
+    ))}
+  </ol>
+</Layout>

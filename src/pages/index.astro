@@ -1,0 +1,69 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+---
+
+<Layout title={SITE_TITLE} description={SITE_DESCRIPTION}>
+  <style>
+    h1 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 2rem;
+      line-height: 1.3;
+    }
+
+    p {
+      line-height: 1.75;
+      margin-bottom: 1.5rem;
+      color: #222;
+    }
+
+    .actions {
+      margin-top: 2.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .actions a {
+      color: inherit;
+      text-decoration: none;
+      font-style: italic;
+    }
+
+    .actions a::before {
+      content: '→ ';
+      font-style: normal;
+    }
+
+    .actions a:hover {
+      text-decoration: underline;
+    }
+  </style>
+
+  <h1>Grappling is infinitely complex.</h1>
+
+  <p>
+    No document, no course, no system can capture it completely. That isn't a problem to solve
+    — it's the starting point. Every serious grappler has to build their game around that
+    reality, whether they acknowledge it or not.
+  </p>
+
+  <p>
+    Fractal BJJ is an attempt to map high-level no-gi the way a practitioner actually thinks
+    about it in real time. The full game is broken into 19 systems. Some are closed enough to
+    document completely. Others are framework systems — too open to ever finish, where principles
+    matter more than flowcharts. Treating these two types the same way is where most mental
+    models break down.
+  </p>
+
+  <p>
+    This site is how I organise the sport. It's a working document — built from training,
+    teaching, competition, and the best available sources. Always in progress, never final.
+  </p>
+
+  <nav class="actions">
+    <a href="/systems">Enter the system map</a>
+    <a href="/approach">Read the full approach</a>
+  </nav>
+</Layout>
