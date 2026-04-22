@@ -1,6 +1,8 @@
 ---
-import { execSync } from 'child_process';
+import gitDatesRaw from '../data/git-dates.json';
 import BaseHead from '../components/BaseHead.astro';
+
+const gitDates = gitDatesRaw as Record<string, string>;
 
 interface Props {
   title: string;
@@ -12,21 +14,14 @@ const { title, description, lastUpdatedFile } = Astro.props;
 
 let lastUpdated: string | null = null;
 if (lastUpdatedFile) {
-  try {
-    const iso = execSync(
-      `git log --follow -1 --format=%aI -- "${lastUpdatedFile}"`,
-      { cwd: process.cwd() }
-    ).toString().trim();
-    if (iso) {
-      const d = new Date(iso);
-      lastUpdated = d.toLocaleDateString('en-GB', {
-        day: 'numeric',
-        month: 'long',
-        year: 'numeric',
-      });
-    }
-  } catch {
-    // git not available or file has no commits yet
+  const iso = gitDates[lastUpdatedFile];
+  if (iso) {
+    const d = new Date(iso);
+    lastUpdated = d.toLocaleDateString('en-GB', {
+      day: 'numeric',
+      month: 'long',
+      year: 'numeric',
+    });
   }
 }
 ---

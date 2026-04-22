@@ -3,11 +3,12 @@
 import mdx from '@astrojs/mdx';
 import sitemap from '@astrojs/sitemap';
 import { defineConfig, fontProviders } from 'astro/config';
+import { gitDates } from './src/integrations/git-dates.mjs';
 
 // https://astro.build/config
 export default defineConfig({
 	site: 'https://fractal-bjj.com',
-	integrations: [mdx(), sitemap()],
+	integrations: [mdx(), sitemap(), gitDates()],
 	fonts: [
 		{
 			provider: fontProviders.local(),
