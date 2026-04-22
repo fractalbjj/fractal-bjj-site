@@ -2,33 +2,28 @@
 import Layout from '../../layouts/Layout.astro';
 import { SITE_TITLE } from '../../consts';
 
-const Offensive = [
-  'Passing System',
-  'Pinning System',
-  'Pin Submissions',
-  'Front Headlock System',
-  'Top Turtle System',
-  'Back Attack System',
-  'Offensive Guard System',
-  'Offensive Leg Lock System',
-  'Offensive Wrestling System',
-  'Wrestle Up System',
+// Paired offensive / defensive systems with complexity ratings from spreadsheet
+const pairs: { offensive: { name: string; slug: string; complexity: number }, defensive: { name: string; slug: string; complexity: number } | null }[] = [
+  { offensive: { name: 'Passing System',           slug: 'passing-system',           complexity: 5 }, defensive: { name: 'Guard Retention',        slug: 'guard-retention',        complexity: 3 } },
+  { offensive: { name: 'Pinning System',           slug: 'pinning-system',           complexity: 2 }, defensive: { name: 'Pin Escapes',            slug: 'pin-escapes',            complexity: 2 } },
+  { offensive: { name: 'Pin Submissions',          slug: 'pin-submissions',          complexity: 2 }, defensive: { name: 'Pin Submission Escapes', slug: 'pin-submission-escapes', complexity: 2 } },
+  { offensive: { name: 'Front Headlock System',    slug: 'front-headlock-system',    complexity: 3 }, defensive: { name: 'Front Headlock Defence', slug: 'front-headlock-defence', complexity: 2 } },
+  { offensive: { name: 'Top Turtle System',        slug: 'top-turtle-system',        complexity: 2 }, defensive: { name: 'Bottom Turtle Defence',  slug: 'bottom-turtle-defence',  complexity: 1 } },
+  { offensive: { name: 'Back Attack System',       slug: 'back-attack-system',       complexity: 2 }, defensive: { name: 'Back Control Defence',   slug: 'back-control-defence',   complexity: 2 } },
+  { offensive: { name: 'Offensive Leg Lock System',slug: 'offensive-leg-lock-system',complexity: 4 }, defensive: { name: 'Leg Lock Defence',       slug: 'leg-lock-defence',       complexity: 3 } },
+  { offensive: { name: 'Offensive Wrestling System',slug:'offensive-wrestling-system',complexity: 5 }, defensive: { name: 'Defensive Wrestling',    slug: 'defensive-wrestling',    complexity: 3 } },
+  { offensive: { name: 'Offensive Guard System',   slug: 'offensive-guard-system',   complexity: 5 }, defensive: null },
+  { offensive: { name: 'Wrestle Up System',        slug: 'wrestle-up-system',        complexity: 2 }, defensive: null },
 ];
 
-const Defensive = [
-  'Guard Retention',
-  'Pin Escapes',
-  'Pin Submission Escapes',
-  'Front Headlock Defence',
-  'Bottom Turtle Defence',
-  'Back Control Defence',
-  'Leg Lock Defence',
-  'Defensive Wrestling',
+const general = [
+  { name: 'Scrambling', slug: 'scrambling', complexity: 3 },
 ];
 
-const Other = [
-  'Scrambling',
-];
+const complexityColour = (n: number) => {
+  const colours: Record<number, string> = { 1: '#4a9960', 2: '#7aab52', 3: '#c8a428', 4: '#d4662a', 5: '#c0392b' };
+  return colours[n];
+};
 ---
 
 <Layout
@@ -36,6 +31,70 @@ const Other = [
   description="All 19 no-gi grappling systems, grouped by Offensive, Defensive and General."
 >
   <style>
+    /* widen main for sidebar layout */
+    :global(main) {
+      max-width: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .page-outer {
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      gap: 0;
+      max-width: 1100px;
+      margin: 4rem auto;
+      padding: 0 1.5rem;
+      align-items: start;
+    }
+
+    /* TOC sidebar */
+    .toc {
+      position: sticky;
+      top: 2rem;
+      padding-right: 2.5rem;
+      font-size: 0.78rem;
+      line-height: 1.5;
+    }
+
+    .toc-title {
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #aaa;
+      margin-bottom: 0.75rem;
+    }
+
+    .toc ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .toc li {
+      margin-bottom: 0.3rem;
+    }
+
+    .toc a {
+      color: #999;
+      text-decoration: none;
+    }
+
+    .toc a:hover {
+      color: #1a1a1a;
+    }
+
+    .toc .toc-h3 {
+      padding-left: 0.85rem;
+      font-size: 0.74rem;
+    }
+
+    /* main content */
+    .content {
+      max-width: 65ch;
+    }
+
     h1 {
       font-size: 1.5rem;
       font-weight: 600;
@@ -52,14 +111,14 @@ const Other = [
     h2 {
       font-size: 1.3rem;
       font-weight: 600;
-      margin-top: 2.5rem;
+      margin-top: 3rem;
       margin-bottom: 1rem;
     }
 
     h3 {
       font-size: 1.1rem;
       font-weight: 600;
-      margin-top: 2.5rem;
+      margin-top: 2rem;
       margin-bottom: 1rem;
       font-style: italic;
       text-indent: 1rem;
@@ -70,116 +129,272 @@ const Other = [
     }
 
     h4 {
-      font-size: 0.85rem;
-      font-weight: 600;
+      font-size: 0.8rem;
+      font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.07em;
       margin-top: 2.5rem;
-      margin-bottom: 0.4rem;
+      margin-bottom: 0.75rem;
+      color: #555;
     }
 
-    h2 + h4 {
-      margin-top: 1.2rem;
+    p {
+      line-height: 1.75;
+      margin-bottom: 1.5rem;
+      color: #222;
     }
 
-    .track-label {
-      font-size: 0.85rem;
-      color: #888;
-      margin-bottom: 1rem;
-      margin-top: 0;
-    }
-
-    ol {
-      padding-left: 1.5rem;
-      margin-bottom: 2rem;
+    ul {
+      padding-left: 1.25rem;
+      margin-bottom: 1.5rem;
     }
 
     li {
       line-height: 1.75;
-      margin-bottom: 0.25rem;
+      margin-bottom: 0.2rem;
     }
 
-    li a {
+    /* paired table */
+    .system-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 2rem;
+      font-size: 0.9rem;
+    }
+
+    .system-table thead th {
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      color: #888;
+      text-align: left;
+      padding: 0 0.75rem 0.6rem 0;
+      border-bottom: 1px solid #e0e0e0;
+    }
+
+    .system-table tbody td {
+      padding: 0.55rem 0.75rem 0.55rem 0;
+      border-bottom: 1px solid #f0f0f0;
+      vertical-align: middle;
+    }
+
+    .system-table tbody tr:last-child td {
+      border-bottom: none;
+    }
+
+    .system-cell {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.5rem;
+    }
+
+    .system-cell a {
       color: inherit;
       text-decoration: none;
     }
 
-    li a:hover {
+    .system-cell a:hover {
       text-decoration: underline;
+    }
+
+    .complexity-tag {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      padding: 0.1rem 0.35rem;
+      border: 1px solid currentColor;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .empty-cell {
+      color: #ccc;
+      font-size: 0.85rem;
+    }
+
+    /* general row */
+    .general-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 2rem;
+      font-size: 0.9rem;
+    }
+
+    .general-table td {
+      padding: 0.55rem 0.75rem 0.55rem 0;
+    }
+
+    @media (max-width: 680px) {
+      .page-outer {
+        grid-template-columns: 1fr;
+      }
+
+      .toc {
+        display: none;
+      }
     }
   </style>
 
-  <h1>19 Major Systems</h1>
-  <p class="intro">
-    These 19 systems cover the full scope of high-level no-gi grappling, a well-rounded athlete needs competency in all, yet clearly many specialists exist and excell. The choice of 19 is mine and it isn't universally agreed — another coach would cut the sport slightly differently.
-  </p>
+  <div class="page-outer">
+    <nav class="toc" id="toc" aria-label="Page contents">
+      <p class="toc-title">Contents</p>
+      <ul id="toc-list"></ul>
+    </nav>
 
-  <h2>Overview</h2>
-  <h3>Connections</h3>
+    <div class="content">
+      <h1 id="top">19 Major Systems</h1>
+      <p class="intro">
+        These 19 systems cover the full scope of high-level no-gi grappling. A well-rounded athlete
+        needs competency in all of them, yet clearly many specialists exist and excel. The choice of
+        19 is mine and it isn't universally agreed — another coach would cut the sport slightly
+        differently.
+      </p>
 
-  <p>
-    The systems aren't isolated. They connect in dynamic ways forming a complicated network — passing flows into pinning, leg entanglements turns into scrambles, turtle flows back into guard, and someone skips the whole process by cartwheeling onto a Kimura. Specific subsystems even exist in hybrid state, midway between defined major systems (think the classic 10th Planet 'truck' — a blend of simultaneously attacking the both the back and lower body).
-    However, compartmentalisation still helps and soft lines have to be drawn somewhere to achieve it. This lets you work on the problems presented by one area at a time without pretending the rest doesn't exist.
-  </p>
+      <h2 id="overview">Overview</h2>
 
-  <h3>Know where you are</h3>
+      <h3 id="connections">Connections</h3>
 
-  <p>
-    The single most important habit in competitive grappling is being able to answer two
-    questions at any moment:
-  </p>
+      <p>
+        The systems aren't isolated. They connect in dynamic ways forming a complicated network —
+        passing flows into pinning, leg entanglements turns into scrambles, turtle flows back into
+        guard, and someone skips the whole process by cartwheeling onto a Kimura. Specific
+        subsystems even exist in hybrid state, midway between defined major systems (think the
+        classic 10th Planet 'truck' — a blend of simultaneously attacking both the back and lower
+        body). However, compartmentalisation still helps and soft lines have to be drawn somewhere
+        to achieve it. This lets you work on the problems presented by one area at a time without
+        pretending the rest doesn't exist.
+      </p>
 
-  <ul>
-    <li>Where am I in right now?<br>
-    <li>What are the current goals — mine, and my opponent's?<br>
-  </ul>
+      <h3 id="know-where-you-are">Know where you are</h3>
 
-  <p>
-    These questions become, which system am I in and what are the goals of this system. Systematisation allows for broad compartmentalisation of your knowledge, thus once you quickly identify which system you are in, the goals are already understood — alongside common pathways to achieve them. Once this is clear, techniques organise themselves around the goals. Without that technique is just memorisation of a static sequence — which breaks down under pressure and exposure to different stimulus.
-  </p>
+      <p>
+        The single most important habit in competitive grappling is being able to answer two
+        questions at any moment:
+      </p>
 
-  <h3>Closed systems vs open systems</h3>
+      <ul>
+        <li>Where am I right now?</li>
+        <li>What are the current goals — mine, and my opponent's?</li>
+      </ul>
 
-  <p>
-    Not all of the 19 systems are equal. Whilst none are closed, some are more bounded with clearer goals and less potential variation. Some specific lower level subsystems are so well understood and broken down by modern grappling that there are a near finite set of meaningful positions, grips, reactions, and decision points — meaning you could make genuine attempts to flowchart them.
-    This is where we get into hyper-specific battles such as submission finishing mechanics vs defensive mechanisms.
-  </p>
+      <p>
+        These questions become: which system am I in, and what are the goals of this system?
+        Systematisation allows for broad compartmentalisation of your knowledge — once you quickly
+        identify which system you are in, the goals are already understood alongside common pathways
+        to achieve them. Once this is clear, techniques organise themselves around the goals.
+        Without that, technique is just memorisation of a static sequence, which breaks down under
+        pressure and exposure to different stimuli.
+      </p>
 
-  <p>
-    However, trying to treat the entire game with this detailed low level approach is where most mental models break down, and most beginners struggle to move away from.
-    Instead it is best to operate and conceptualise your Jiu-Jitsu like a computer ... *Some sort of analogy to how computers store data, structure, hash maps, memory caches the idea is you cannot think of the whole game in detail at once, its too huge, have to have teh whole structure in mind in broad lose concepts. then 'load in' technical detail, moves, specific dilemmas, features .... as you moves to more localised environments, positions, scenarios....
-    balancing flexibility (ability to ready to act against a more broad range of opponent reactions), capacity, mental processing speed ....*
-  </p>
+      <h3 id="closed-vs-open">Closed systems vs open systems</h3>
 
-  <p>
-    The chess analogy is useful here: openings and endgames are studied as closed systems because
-    they can be. The middle game is played on principle because it has to be. Grappling works the
-    same way.
-  </p>
+      <p>
+        Not all of the 19 systems are equal. Whilst none are fully closed, some are more bounded
+        with clearer goals and less potential variation. Some specific lower-level subsystems are so
+        well understood that there are a near-finite set of meaningful positions, grips, reactions,
+        and decision points — meaning you could make genuine attempts to flowchart them. This is
+        where we get into hyper-specific battles such as submission finishing mechanics vs defensive
+        mechanisms.
+      </p>
 
-  <h2>System Mapping</h2>
+      <p>
+        However, trying to treat the entire game with this low-level detail is where most mental models break down. It is better to conceptualise your jiu-jitsu the way a computer manages data: a hierarchy of instant-access cache for what is being used right now, working memory for what might be needed soon, and bulk storage for everything else. In a jiu-jitsu context your clear structural map of major systems, high-frequency connections, and overarching goals sits at the top, always present. Specific detail — sub-systems, decision points, technical mechanics, dilemmas — loads in only when you find yourself in the scenario that calls for it. Trying to hold fine-grained detail across the whole sport at once is the mental equivalent of fitting an entire hard drive into RAM. Processing slows, responses falter.
+      </p>
 
-  <h4>Offensive systems</h4>
-  <p class="track-label">Exhibit positional dominance, progression or threaten submission.</p>
-  <ol>
-    {Offensive.map((name) => (
-      <li><a href="#">{name}</a></li>
-    ))}
-  </ol>
+      <p>
+        The chess analogy is also useful here: openings and endgames are studied as closed systems
+        because they can be. The middlegame is played on principle because it has to be. Grappling
+        works the same way.
+      </p>
 
-  <h4>Defensive counterpart systems</h4>
-  <p class="track-label">Prevention of opponents offensive systems and progression towards offensive cycles.</p>
-  <ol>
-    {Defensive.map((name) => (
-      <li><a href="#">{name}</a></li>
-    ))}
-  </ol>
+      <h2 id="system-mapping">System Mapping</h2>
 
-  <h4>Other general systems</h4>
-  <p class="track-label">Neither offensive or defensive in nature.</p>
-  <ol>
-    {Other.map((name) => (
-      <li><a href="#">{name}</a></li>
-    ))}
-  </ol>
+      <table class="system-table">
+        <thead>
+          <tr>
+            <th>Offensive systems</th>
+            <th>Defensive counterpart</th>
+          </tr>
+        </thead>
+        <tbody>
+          {pairs.map(({ offensive, defensive }) => (
+            <tr>
+              <td>
+                <div class="system-cell">
+                  <a href={`/systems/${offensive.slug}`}>{offensive.name}</a>
+                  <span
+                    class="complexity-tag"
+                    style={`color: ${complexityColour(offensive.complexity)}`}
+                    title={`Complexity ${offensive.complexity}`}
+                  >
+                    {offensive.complexity}
+                  </span>
+                </div>
+              </td>
+              <td>
+                {defensive ? (
+                  <div class="system-cell">
+                    <a href={`/systems/${defensive.slug}`}>{defensive.name}</a>
+                    <span
+                      class="complexity-tag"
+                      style={`color: ${complexityColour(defensive.complexity)}`}
+                      title={`Complexity ${defensive.complexity}`}
+                    >
+                      {defensive.complexity}
+                    </span>
+                  </div>
+                ) : (
+                  <span class="empty-cell">&mdash;</span>
+                )}
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+
+      <h4>General</h4>
+      <table class="general-table">
+        <tbody>
+          {general.map(({ name, slug, complexity }) => (
+            <tr>
+              <td>
+                <div class="system-cell">
+                  <a href={`/systems/${slug}`}>{name}</a>
+                  <span
+                    class="complexity-tag"
+                    style={`color: ${complexityColour(complexity)}`}
+                    title={`Complexity ${complexity}`}
+                  >
+                    {complexity}
+                  </span>
+                </div>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+
+    </div>
+  </div>
+
+  <script>
+    // Auto-generate TOC from h2 and h3 headings in .content
+    const content = document.querySelector('.content');
+    const tocList = document.getElementById('toc-list');
+
+    if (content && tocList) {
+      const headings = content.querySelectorAll('h2[id], h3[id]');
+      headings.forEach((heading) => {
+        const li = document.createElement('li');
+        li.className = heading.tagName === 'H3' ? 'toc-h3' : '';
+        const a = document.createElement('a');
+        a.href = '#' + heading.id;
+        a.textContent = heading.textContent ?? '';
+        li.appendChild(a);
+        tocList.appendChild(li);
+      });
+    }
+  </script>
 </Layout>
