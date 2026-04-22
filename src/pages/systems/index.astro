@@ -2,35 +2,38 @@
 import Layout from '../../layouts/Layout.astro';
 import { SITE_TITLE } from '../../consts';
 
-const trackA = [
-  'Back Attack System',
-  'Back Control Defence',
-  'Front Headlock System',
-  'Front Headlock Defence',
-  'Top Turtle System',
-  'Bottom Turtle Defence',
-  'Pinning System',
-  'Pin Escapes',
-  'Pin Submissions',
-  'Pin Submission Escapes',
-];
-
-const trackB = [
+const Offensive = [
   'Passing System',
-  'Guard Retention',
+  'Pinning System',
+  'Pin Submissions',
+  'Front Headlock System',
+  'Top Turtle System',
+  'Back Attack System',
   'Offensive Guard System',
   'Offensive Leg Lock System',
-  'Leg Lock Defence',
   'Offensive Wrestling System',
-  'Defensive Wrestling',
   'Wrestle Up System',
+];
+
+const Defensive = [
+  'Guard Retention',
+  'Pin Escapes',
+  'Pin Submission Escapes',
+  'Front Headlock Defence',
+  'Bottom Turtle Defence',
+  'Back Control Defence',
+  'Leg Lock Defence',
+  'Defensive Wrestling',
+];
+
+const Other = [
   'Scrambling',
 ];
 ---
 
 <Layout
   title={`System Map — ${SITE_TITLE}`}
-  description="All 19 no-gi grappling systems, grouped by Track A (definable) and Track B (framework)."
+  description="All 19 no-gi grappling systems, grouped by Offensive, Defensive and General."
 >
   <style>
     h1 {
@@ -47,12 +50,36 @@ const trackB = [
     }
 
     h2 {
+      font-size: 1.3rem;
+      font-weight: 600;
+      margin-top: 2.5rem;
+      margin-bottom: 1rem;
+    }
+
+    h3 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-top: 2.5rem;
+      margin-bottom: 1rem;
+      font-style: italic;
+      text-indent: 1rem;
+    }
+
+    h2 + h3 {
+      margin-top: 1.2rem;
+    }
+
+    h4 {
       font-size: 0.85rem;
       font-weight: 600;
       text-transform: uppercase;
       letter-spacing: 0.07em;
       margin-top: 2.5rem;
       margin-bottom: 0.4rem;
+    }
+
+    h2 + h4 {
+      margin-top: 1.2rem;
     }
 
     .track-label {
@@ -82,25 +109,76 @@ const trackB = [
     }
   </style>
 
-  <h1>System map</h1>
+  <h1>19 Major Systems</h1>
   <p class="intro">
-    19 systems covering the full scope of high-level no-gi grappling. Track A systems are
-    closed enough to document completely. Track B systems require ongoing framework documentation
-    — they are too open to ever finish.
+    These 19 systems cover the full scope of high-level no-gi grappling, a well-rounded athlete needs competency in all, yet clearly many specialists exist and excell. The choice of 19 is mine and it isn't universally agreed — another coach would cut the sport slightly differently.
   </p>
 
-  <h2>Track A — Definable systems</h2>
-  <p class="track-label">Bounded enough to flowchart. Finite decision trees exist.</p>
+  <h2>Overview</h2>
+  <h3>Connections</h3>
+
+  <p>
+    The systems aren't isolated. They connect in dynamic ways forming a complicated network — passing flows into pinning, leg entanglements turns into scrambles, turtle flows back into guard, and someone skips the whole process by cartwheeling onto a Kimura. Specific subsystems even exist in hybrid state, midway between defined major systems (think the classic 10th Planet 'truck' — a blend of simultaneously attacking the both the back and lower body).
+    However, compartmentalisation still helps and soft lines have to be drawn somewhere to achieve it. This lets you work on the problems presented by one area at a time without pretending the rest doesn't exist.
+  </p>
+
+  <h3>Know where you are</h3>
+
+  <p>
+    The single most important habit in competitive grappling is being able to answer two
+    questions at any moment:
+  </p>
+
+  <ul>
+    <li>Where am I in right now?<br>
+    <li>What are the current goals — mine, and my opponent's?<br>
+  </ul>
+
+  <p>
+    These questions become, which system am I in and what are the goals of this system. Systematisation allows for broad compartmentalisation of your knowledge, thus once you quickly identify which system you are in, the goals are already understood — alongside common pathways to achieve them. Once this is clear, techniques organise themselves around the goals. Without that technique is just memorisation of a static sequence — which breaks down under pressure and exposure to different stimulus.
+  </p>
+
+  <h3>Closed systems vs open systems</h3>
+
+  <p>
+    Not all of the 19 systems are equal. Whilst none are closed, some are more bounded with clearer goals and less potential variation. Some specific lower level subsystems are so well understood and broken down by modern grappling that there are a near finite set of meaningful positions, grips, reactions, and decision points — meaning you could make genuine attempts to flowchart them.
+    This is where we get into hyper-specific battles such as submission finishing mechanics vs defensive mechanisms.
+  </p>
+
+  <p>
+    However, trying to treat the entire game with this detailed low level approach is where most mental models break down, and most beginners struggle to move away from.
+    Instead it is best to operate and conceptualise your Jiu-Jitsu like a computer ... *Some sort of analogy to how computers store data, structure, hash maps, memory caches the idea is you cannot think of the whole game in detail at once, its too huge, have to have teh whole structure in mind in broad lose concepts. then 'load in' technical detail, moves, specific dilemmas, features .... as you moves to more localised environments, positions, scenarios....
+    balancing flexibility (ability to ready to act against a more broad range of opponent reactions), capacity, mental processing speed ....*
+  </p>
+
+  <p>
+    The chess analogy is useful here: openings and endgames are studied as closed systems because
+    they can be. The middle game is played on principle because it has to be. Grappling works the
+    same way.
+  </p>
+
+  <h2>System Mapping</h2>
+
+  <h4>Offensive systems</h4>
+  <p class="track-label">Exhibit positional dominance, progression or threaten submission.</p>
   <ol>
-    {trackA.map((name) => (
+    {Offensive.map((name) => (
       <li><a href="#">{name}</a></li>
     ))}
   </ol>
 
-  <h2>Track B — Framework systems</h2>
-  <p class="track-label">Too large and dynamic to close. Governed by principles and sub-systems.</p>
+  <h4>Defensive counterpart systems</h4>
+  <p class="track-label">Prevention of opponents offensive systems and progression towards offensive cycles.</p>
   <ol>
-    {trackB.map((name) => (
+    {Defensive.map((name) => (
+      <li><a href="#">{name}</a></li>
+    ))}
+  </ol>
+
+  <h4>Other general systems</h4>
+  <p class="track-label">Neither offensive or defensive in nature.</p>
+  <ol>
+    {Other.map((name) => (
       <li><a href="#">{name}</a></li>
     ))}
   </ol>
