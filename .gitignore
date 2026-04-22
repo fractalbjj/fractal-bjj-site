@@ -25,3 +25,9 @@ pnpm-debug.log*
 
 # reference material — never publish
 docs/
+
+# wrangler files
+.wrangler
+.dev.vars*
+!.dev.vars.example
+!.env.example
