@@ -95,13 +95,22 @@ if (lastUpdatedFile) {
         padding: 0 1.5rem;
       }
 
+      /*
+       * max-width uses ch, which is font-relative. Keeping font-size
+       * at the default here (not 0.75rem) ensures 65ch matches main's
+       * 65ch exactly, so text-align: right lines up with the content edge.
+       * The smaller size is applied to the inner <small> element instead.
+       */
       .last-updated {
         max-width: 65ch;
         margin: 0 auto 2rem;
         padding: 0 1.5rem;
+        text-align: right;
+      }
+
+      .last-updated small {
         font-size: 0.75rem;
         color: #bbb;
-        text-align: right;
       }
 
       footer {
@@ -131,7 +140,7 @@ if (lastUpdatedFile) {
     </main>
 
     {lastUpdated && (
-      <p class="last-updated">Last updated: {lastUpdated}</p>
+      <p class="last-updated"><small>Last updated: {lastUpdated}</small></p>
     )}
 
     <footer>

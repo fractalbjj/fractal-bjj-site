@@ -2,23 +2,24 @@
 import Layout from '../../layouts/Layout.astro';
 import { SITE_TITLE } from '../../consts';
 
-// Paired offensive / defensive systems with complexity ratings from spreadsheet
-const pairs: { offensive: { name: string; slug: string; complexity: number }, defensive: { name: string; slug: string; complexity: number } | null }[] = [
-  { offensive: { name: 'Passing System',           slug: 'passing-system',           complexity: 5 }, defensive: { name: 'Guard Retention',        slug: 'guard-retention',        complexity: 3 } },
-  { offensive: { name: 'Pinning System',           slug: 'pinning-system',           complexity: 2 }, defensive: { name: 'Pin Escapes',            slug: 'pin-escapes',            complexity: 2 } },
-  { offensive: { name: 'Pin Submissions',          slug: 'pin-submissions',          complexity: 2 }, defensive: { name: 'Pin Submission Escapes', slug: 'pin-submission-escapes', complexity: 2 } },
-  { offensive: { name: 'Front Headlock System',    slug: 'front-headlock-system',    complexity: 3 }, defensive: { name: 'Front Headlock Defence', slug: 'front-headlock-defence', complexity: 2 } },
-  { offensive: { name: 'Top Turtle System',        slug: 'top-turtle-system',        complexity: 2 }, defensive: { name: 'Bottom Turtle Defence',  slug: 'bottom-turtle-defence',  complexity: 1 } },
-  { offensive: { name: 'Back Attack System',       slug: 'back-attack-system',       complexity: 2 }, defensive: { name: 'Back Control Defence',   slug: 'back-control-defence',   complexity: 2 } },
-  { offensive: { name: 'Offensive Leg Lock System',slug: 'offensive-leg-lock-system',complexity: 4 }, defensive: { name: 'Leg Lock Defence',       slug: 'leg-lock-defence',       complexity: 3 } },
-  { offensive: { name: 'Offensive Wrestling System',slug:'offensive-wrestling-system',complexity: 5 }, defensive: { name: 'Defensive Wrestling',    slug: 'defensive-wrestling',    complexity: 3 } },
-  { offensive: { name: 'Offensive Guard System',   slug: 'offensive-guard-system',   complexity: 5 }, defensive: null },
-  { offensive: { name: 'Wrestle Up System',        slug: 'wrestle-up-system',        complexity: 2 }, defensive: null },
+type System = { name: string; slug: string; complexity: number; number: number };
+
+const regularPairs: { offensive: System; defensive: System }[] = [
+  { offensive: { name: 'Passing System',            slug: 'passing-system',            complexity: 5, number:  1 }, defensive: { name: 'Guard Retention',        slug: 'guard-retention',        complexity: 3, number: 11 } },
+  { offensive: { name: 'Pinning System',            slug: 'pinning-system',            complexity: 2, number:  2 }, defensive: { name: 'Pin Escapes',            slug: 'pin-escapes',            complexity: 2, number: 12 } },
+  { offensive: { name: 'Pin Submissions',           slug: 'pin-submissions',           complexity: 2, number:  3 }, defensive: { name: 'Pin Submission Escapes', slug: 'pin-submission-escapes', complexity: 2, number: 13 } },
+  { offensive: { name: 'Front Headlock System',     slug: 'front-headlock-system',     complexity: 3, number:  4 }, defensive: { name: 'Front Headlock Defence', slug: 'front-headlock-defence', complexity: 2, number: 14 } },
+  { offensive: { name: 'Top Turtle System',         slug: 'top-turtle-system',         complexity: 2, number:  5 }, defensive: { name: 'Bottom Turtle Defence',  slug: 'bottom-turtle-defence',  complexity: 1, number: 15 } },
+  { offensive: { name: 'Back Attack System',        slug: 'back-attack-system',        complexity: 2, number:  6 }, defensive: { name: 'Back Control Defence',   slug: 'back-control-defence',   complexity: 2, number: 16 } },
+  { offensive: { name: 'Offensive Leg Lock System', slug: 'offensive-leg-lock-system', complexity: 4, number:  7 }, defensive: { name: 'Leg Lock Defence',       slug: 'leg-lock-defence',       complexity: 3, number: 17 } },
 ];
 
-const general = [
-  { name: 'Scrambling', slug: 'scrambling', complexity: 3 },
-];
+const offensiveWrestling: System = { name: 'Offensive Wrestling System', slug: 'offensive-wrestling-system', complexity: 5, number:  8 };
+const defensiveWrestling: System = { name: 'Defensive Wrestling',        slug: 'defensive-wrestling',        complexity: 3, number: 18 };
+const wrestleUp: System          = { name: 'Wrestle Up System',          slug: 'wrestle-up-system',          complexity: 2, number:  9 };
+const offensiveGuard: System     = { name: 'Offensive Guard System',     slug: 'offensive-guard-system',     complexity: 5, number: 10 };
+
+const general: System[] = [{ name: 'Scrambling', slug: 'scrambling', complexity: 3, number: 19 }];
 
 const complexityColour = (n: number) => {
   const colours: Record<number, string> = { 1: '#4a9960', 2: '#7aab52', 3: '#c8a428', 4: '#d4662a', 5: '#c0392b' };
@@ -29,32 +30,20 @@ const complexityColour = (n: number) => {
 <Layout
   title={`System Map — ${SITE_TITLE}`}
   description="All 19 no-gi grappling systems, grouped by Offensive, Defensive and General."
+  lastUpdatedFile="src/pages/systems/index.astro"
 >
   <style>
-    /* widen main for sidebar layout */
-    :global(main) {
-      max-width: none;
-      margin: 0;
-      padding: 0;
-    }
-
-    .page-outer {
-      display: grid;
-      grid-template-columns: 200px 1fr;
-      gap: 0;
-      max-width: 1100px;
-      margin: 4rem auto;
-      padding: 0 1.5rem;
-      align-items: start;
-    }
-
-    /* TOC sidebar */
+    /*
+     * TOC is position: fixed, placed by JS, so it has no effect on the
+     * content column width. main keeps its normal 65ch centred layout.
+     */
     .toc {
-      position: sticky;
-      top: 2rem;
-      padding-right: 2.5rem;
+      position: fixed;
+      top: 5rem;
+      width: 180px;
       font-size: 0.78rem;
       line-height: 1.5;
+      display: none; /* JS shows it only when there is room */
     }
 
     .toc-title {
@@ -63,36 +52,36 @@ const complexityColour = (n: number) => {
       text-transform: uppercase;
       letter-spacing: 0.08em;
       color: #aaa;
-      margin-bottom: 0.75rem;
+      margin: 0 0 0.75rem;
     }
 
-    .toc ul {
+    /*
+     * TOC items are created by JS and never receive Astro's scoped
+     * data-attribute, so these selectors must be :global().
+     */
+    :global(#toc-list) {
       list-style: none;
       margin: 0;
       padding: 0;
     }
 
-    .toc li {
+    :global(#toc-list li) {
       margin-bottom: 0.3rem;
     }
 
-    .toc a {
-      color: #999;
-      text-decoration: none;
-    }
-
-    .toc a:hover {
+    :global(#toc-list a) {
       color: #1a1a1a;
+      text-decoration: none;
+      opacity: 0.4;
     }
 
-    .toc .toc-h3 {
+    :global(#toc-list a:hover) {
+      opacity: 1;
+    }
+
+    :global(#toc-list .toc-h3) {
       padding-left: 0.85rem;
       font-size: 0.74rem;
-    }
-
-    /* main content */
-    .content {
-      max-width: 65ch;
     }
 
     h1 {
@@ -128,16 +117,6 @@ const complexityColour = (n: number) => {
       margin-top: 1.2rem;
     }
 
-    h4 {
-      font-size: 0.8rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.07em;
-      margin-top: 2.5rem;
-      margin-bottom: 0.75rem;
-      color: #555;
-    }
-
     p {
       line-height: 1.75;
       margin-bottom: 1.5rem;
@@ -154,11 +133,24 @@ const complexityColour = (n: number) => {
       margin-bottom: 0.2rem;
     }
 
-    /* paired table */
+    .complexity-key {
+      font-size: 0.85rem;
+      color: #555;
+      margin-bottom: 1.25rem;
+      line-height: 1.6;
+    }
+
+    .key-legend {
+      display: inline-flex;
+      gap: 0.3rem;
+      vertical-align: middle;
+      margin-left: 0.4rem;
+    }
+
     .system-table {
       width: 100%;
       border-collapse: collapse;
-      margin-bottom: 2rem;
+      margin-bottom: 2.5rem;
       font-size: 0.9rem;
     }
 
@@ -179,6 +171,10 @@ const complexityColour = (n: number) => {
       vertical-align: middle;
     }
 
+    .system-table tbody td + td {
+      padding-left: 1.5rem;
+    }
+
     .system-table tbody tr:last-child td {
       border-bottom: none;
     }
@@ -186,13 +182,21 @@ const complexityColour = (n: number) => {
     .system-cell {
       display: flex;
       align-items: center;
-      justify-content: space-between;
       gap: 0.5rem;
+    }
+
+    .system-number {
+      font-size: 0.65rem;
+      color: #bbb;
+      font-weight: 600;
+      min-width: 1.4em;
+      flex-shrink: 0;
     }
 
     .system-cell a {
       color: inherit;
       text-decoration: none;
+      flex: 1;
     }
 
     .system-cell a:hover {
@@ -213,174 +217,183 @@ const complexityColour = (n: number) => {
       color: #ccc;
       font-size: 0.85rem;
     }
-
-    /* general row */
-    .general-table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-bottom: 2rem;
-      font-size: 0.9rem;
-    }
-
-    .general-table td {
-      padding: 0.55rem 0.75rem 0.55rem 0;
-    }
-
-    @media (max-width: 680px) {
-      .page-outer {
-        grid-template-columns: 1fr;
-      }
-
-      .toc {
-        display: none;
-      }
-    }
   </style>
 
-  <div class="page-outer">
-    <nav class="toc" id="toc" aria-label="Page contents">
-      <p class="toc-title">Contents</p>
-      <ul id="toc-list"></ul>
-    </nav>
+  <!-- TOC is fixed-positioned by JS; it does not affect content layout -->
+  <nav class="toc" id="toc" aria-label="Page contents">
+    <p class="toc-title">Contents</p>
+    <ul id="toc-list"></ul>
+  </nav>
 
-    <div class="content">
-      <h1 id="top">19 Major Systems</h1>
-      <p class="intro">
-        These 19 systems cover the full scope of high-level no-gi grappling. A well-rounded athlete
-        needs competency in all of them, yet clearly many specialists exist and excel. The choice of
-        19 is mine and it isn't universally agreed — another coach would cut the sport slightly
-        differently.
-      </p>
+  <!-- Content fills main exactly as on every other page -->
+  <div class="content">
+    <h1 id="top">19 Major Systems</h1>
+    <p class="intro">
+      These 19 systems cover the full scope of high-level no-gi grappling. A well-rounded athlete
+      needs competency in all of them, yet clearly many specialists exist and excel. The choice of
+      19 is mine and it isn't universally agreed — another coach would cut the sport slightly
+      differently.
+    </p>
 
-      <h2 id="overview">Overview</h2>
+    <h2 id="overview">Overview</h2>
 
-      <h3 id="connections">Connections</h3>
+    <h3 id="connections">Connections</h3>
 
-      <p>
-        The systems aren't isolated. They connect in dynamic ways forming a complicated network —
-        passing flows into pinning, leg entanglements turns into scrambles, turtle flows back into
-        guard, and someone skips the whole process by cartwheeling onto a Kimura. Specific
-        subsystems even exist in hybrid state, midway between defined major systems (think the
-        classic 10th Planet 'truck' — a blend of simultaneously attacking both the back and lower
-        body). However, compartmentalisation still helps and soft lines have to be drawn somewhere
-        to achieve it. This lets you work on the problems presented by one area at a time without
-        pretending the rest doesn't exist.
-      </p>
+    <p>
+      The systems aren't isolated. They connect in dynamic ways forming a complicated network —
+      passing flows into pinning, leg entanglements turns into scrambles, turtle flows back into
+      guard, and someone skips the whole process by cartwheeling onto a Kimura. Specific
+      subsystems even exist in hybrid state, midway between defined major systems (think the
+      classic 10th Planet 'truck' — a blend of simultaneously attacking both the back and lower
+      body). However, compartmentalisation still helps and soft lines have to be drawn somewhere
+      to achieve it. This lets you work on the problems presented by one area at a time without
+      pretending the rest doesn't exist.
+    </p>
 
-      <h3 id="know-where-you-are">Know where you are</h3>
+    <h3 id="know-where-you-are">Know where you are</h3>
 
-      <p>
-        The single most important habit in competitive grappling is being able to answer two
-        questions at any moment:
-      </p>
+    <p>
+      The single most important habit in competitive grappling is being able to answer two
+      questions at any moment:
+    </p>
 
-      <ul>
-        <li>Where am I right now?</li>
-        <li>What are the current goals — mine, and my opponent's?</li>
-      </ul>
+    <ul>
+      <li>Where am I right now?</li>
+      <li>What are the current goals — mine, and my opponent's?</li>
+    </ul>
 
-      <p>
-        These questions become: which system am I in, and what are the goals of this system?
-        Systematisation allows for broad compartmentalisation of your knowledge — once you quickly
-        identify which system you are in, the goals are already understood alongside common pathways
-        to achieve them. Once this is clear, techniques organise themselves around the goals.
-        Without that, technique is just memorisation of a static sequence, which breaks down under
-        pressure and exposure to different stimuli.
-      </p>
+    <p>
+      These questions become: which system am I in, and what are the goals of this system?
+      Systematisation allows for broad compartmentalisation of your knowledge — once you quickly
+      identify which system you are in, the goals are already understood alongside common pathways
+      to achieve them. Once this is clear, techniques organise themselves around the goals.
+      Without that, technique is just memorisation of a static sequence, which breaks down under
+      pressure and exposure to different stimuli.
+    </p>
 
-      <h3 id="closed-vs-open">Closed systems vs open systems</h3>
+    <h3 id="closed-vs-open">Closed systems vs open systems</h3>
 
-      <p>
-        Not all of the 19 systems are equal. Whilst none are fully closed, some are more bounded
-        with clearer goals and less potential variation. Some specific lower-level subsystems are so
-        well understood that there are a near-finite set of meaningful positions, grips, reactions,
-        and decision points — meaning you could make genuine attempts to flowchart them. This is
-        where we get into hyper-specific battles such as submission finishing mechanics vs defensive
-        mechanisms.
-      </p>
+    <p>
+      Not all of the 19 systems are equal. Whilst none are fully closed, some are more bounded
+      with clearer goals and less potential variation. Some specific lower-level subsystems are so
+      well understood that there are a near-finite set of meaningful positions, grips, reactions,
+      and decision points — meaning you could make genuine attempts to flowchart them. This is
+      where we get into hyper-specific battles such as submission finishing mechanics vs defensive
+      mechanisms.
+    </p>
 
-      <p>
-        However, trying to treat the entire game with this low-level detail is where most mental models break down. It is better to conceptualise your jiu-jitsu the way a computer manages data: a hierarchy of instant-access cache for what is being used right now, working memory for what might be needed soon, and bulk storage for everything else. In a jiu-jitsu context your clear structural map of major systems, high-frequency connections, and overarching goals sits at the top, always present. Specific detail — sub-systems, decision points, technical mechanics, dilemmas — loads in only when you find yourself in the scenario that calls for it. Trying to hold fine-grained detail across the whole sport at once is the mental equivalent of fitting an entire hard drive into RAM. Processing slows, responses falter.
-      </p>
+    <p>
+      However, trying to treat the entire game with this low-level detail is where most mental models break down. It is better to conceptualise your jiu-jitsu the way a computer manages data: a hierarchy of instant-access cache for what is being used right now, working memory for what might be needed soon, and bulk storage for everything else. In a jiu-jitsu context your clear structural map of major systems, high-frequency connections, and overarching goals sits at the top, always present. Specific detail — sub-systems, decision points, technical mechanics, dilemmas — loads in only when you find yourself in the scenario that calls for it. Trying to hold fine-grained detail across the whole sport at once is the mental equivalent of fitting an entire hard drive into RAM. Processing slows, responses falter.
+    </p>
 
-      <p>
-        The chess analogy is also useful here: openings and endgames are studied as closed systems
-        because they can be. The middlegame is played on principle because it has to be. Grappling
-        works the same way.
-      </p>
+    <p>
+      The chess analogy is also useful here: openings and endgames are studied as closed systems
+      because they can be. The middlegame is played on principle because it has to be. Grappling
+      works the same way.
+    </p>
 
-      <h2 id="system-mapping">System Mapping</h2>
+    <h2 id="system-mapping">System Mapping</h2>
 
-      <table class="system-table">
-        <thead>
+    <p class="complexity-key">
+      Systems are tagged with a relative complexity rating (1–5) reflecting size and variability
+      — 1 is the most bounded, 5 is the most open.
+      <span class="key-legend" aria-hidden="true">
+        {[1, 2, 3, 4, 5].map((n) => (
+          <span class="complexity-tag" style={`color: ${complexityColour(n)}`}>{n}</span>
+        ))}
+      </span>
+    </p>
+
+    <table class="system-table">
+      <thead>
+        <tr>
+          <th>Offensive</th>
+          <th>Defensive counterpart</th>
+        </tr>
+      </thead>
+      <tbody>
+        {regularPairs.map(({ offensive, defensive }) => (
           <tr>
-            <th>Offensive systems</th>
-            <th>Defensive counterpart</th>
+            <td>
+              <div class="system-cell">
+                <span class="system-number">{offensive.number}</span>
+                <a href={`/systems/${offensive.slug}`}>{offensive.name}</a>
+                <span class="complexity-tag" style={`color: ${complexityColour(offensive.complexity)}`} title={`Complexity ${offensive.complexity}`}>{offensive.complexity}</span>
+              </div>
+            </td>
+            <td>
+              <div class="system-cell">
+                <span class="system-number">{defensive.number}</span>
+                <a href={`/systems/${defensive.slug}`}>{defensive.name}</a>
+                <span class="complexity-tag" style={`color: ${complexityColour(defensive.complexity)}`} title={`Complexity ${defensive.complexity}`}>{defensive.complexity}</span>
+              </div>
+            </td>
           </tr>
-        </thead>
-        <tbody>
-          {pairs.map(({ offensive, defensive }) => (
-            <tr>
-              <td>
-                <div class="system-cell">
-                  <a href={`/systems/${offensive.slug}`}>{offensive.name}</a>
-                  <span
-                    class="complexity-tag"
-                    style={`color: ${complexityColour(offensive.complexity)}`}
-                    title={`Complexity ${offensive.complexity}`}
-                  >
-                    {offensive.complexity}
-                  </span>
-                </div>
-              </td>
-              <td>
-                {defensive ? (
-                  <div class="system-cell">
-                    <a href={`/systems/${defensive.slug}`}>{defensive.name}</a>
-                    <span
-                      class="complexity-tag"
-                      style={`color: ${complexityColour(defensive.complexity)}`}
-                      title={`Complexity ${defensive.complexity}`}
-                    >
-                      {defensive.complexity}
-                    </span>
-                  </div>
-                ) : (
-                  <span class="empty-cell">&mdash;</span>
-                )}
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+        ))}
 
-      <h4>General</h4>
-      <table class="general-table">
-        <tbody>
-          {general.map(({ name, slug, complexity }) => (
-            <tr>
-              <td>
-                <div class="system-cell">
-                  <a href={`/systems/${slug}`}>{name}</a>
-                  <span
-                    class="complexity-tag"
-                    style={`color: ${complexityColour(complexity)}`}
-                    title={`Complexity ${complexity}`}
-                  >
-                    {complexity}
-                  </span>
-                </div>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+        {/* Offensive Wrestling and Wrestle Up share Defensive Wrestling via rowspan */}
+        <tr>
+          <td>
+            <div class="system-cell">
+              <span class="system-number">{offensiveWrestling.number}</span>
+              <a href={`/systems/${offensiveWrestling.slug}`}>{offensiveWrestling.name}</a>
+              <span class="complexity-tag" style={`color: ${complexityColour(offensiveWrestling.complexity)}`} title={`Complexity ${offensiveWrestling.complexity}`}>{offensiveWrestling.complexity}</span>
+            </div>
+          </td>
+          <td rowspan="2">
+            <div class="system-cell">
+              <span class="system-number">{defensiveWrestling.number}</span>
+              <a href={`/systems/${defensiveWrestling.slug}`}>{defensiveWrestling.name}</a>
+              <span class="complexity-tag" style={`color: ${complexityColour(defensiveWrestling.complexity)}`} title={`Complexity ${defensiveWrestling.complexity}`}>{defensiveWrestling.complexity}</span>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <div class="system-cell">
+              <span class="system-number">{wrestleUp.number}</span>
+              <a href={`/systems/${wrestleUp.slug}`}>{wrestleUp.name}</a>
+              <span class="complexity-tag" style={`color: ${complexityColour(wrestleUp.complexity)}`} title={`Complexity ${wrestleUp.complexity}`}>{wrestleUp.complexity}</span>
+            </div>
+          </td>
+          {/* no td — consumed by the rowspan above */}
+        </tr>
 
-    </div>
+        {/* Offensive Guard System has no defensive counterpart */}
+        <tr>
+          <td>
+            <div class="system-cell">
+              <span class="system-number">{offensiveGuard.number}</span>
+              <a href={`/systems/${offensiveGuard.slug}`}>{offensiveGuard.name}</a>
+              <span class="complexity-tag" style={`color: ${complexityColour(offensiveGuard.complexity)}`} title={`Complexity ${offensiveGuard.complexity}`}>{offensiveGuard.complexity}</span>
+            </div>
+          </td>
+          <td><span class="empty-cell">&mdash;</span></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <table class="system-table">
+      <thead>
+        <tr><th>General</th></tr>
+      </thead>
+      <tbody>
+        {general.map(({ name, slug, complexity }) => (
+          <tr>
+            <td>
+              <div class="system-cell">
+                <a href={`/systems/${slug}`}>{name}</a>
+                <span class="complexity-tag" style={`color: ${complexityColour(complexity)}`} title={`Complexity ${complexity}`}>{complexity}</span>
+              </div>
+            </td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
   </div>
 
   <script>
-    // Auto-generate TOC from h2 and h3 headings in .content
+    // Build the TOC from headings inside .content
     const content = document.querySelector('.content');
     const tocList = document.getElementById('toc-list');
 
@@ -388,7 +401,7 @@ const complexityColour = (n: number) => {
       const headings = content.querySelectorAll('h2[id], h3[id]');
       headings.forEach((heading) => {
         const li = document.createElement('li');
-        li.className = heading.tagName === 'H3' ? 'toc-h3' : '';
+        if (heading.tagName === 'H3') li.classList.add('toc-h3');
         const a = document.createElement('a');
         a.href = '#' + heading.id;
         a.textContent = heading.textContent ?? '';
@@ -396,5 +409,28 @@ const complexityColour = (n: number) => {
         tocList.appendChild(li);
       });
     }
+
+    // Position the TOC in the left margin of main using its actual pixel rect.
+    // This avoids any ch-unit mismatch and keeps the content column untouched.
+    const toc = document.getElementById('toc') as HTMLElement | null;
+    const mainEl = document.querySelector('main') as HTMLElement | null;
+
+    function positionTOC() {
+      if (!toc || !mainEl) return;
+      const rect = mainEl.getBoundingClientRect();
+      const tocWidth = 180; // matches .toc { width: 180px } — offsetWidth returns 0 when display:none
+      const gap = 16; // px
+      const left = rect.left - gap - tocWidth;
+
+      if (left >= 8) {
+        toc.style.left = left + 'px';
+        toc.style.display = 'block';
+      } else {
+        toc.style.display = 'none';
+      }
+    }
+
+    positionTOC();
+    window.addEventListener('resize', positionTOC);
   </script>
 </Layout>
