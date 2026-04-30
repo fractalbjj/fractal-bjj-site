@@ -25,3 +25,6 @@ pnpm-debug.log*
 
 # reference material — never publish
 docs/
+
+# Claude Code working directory
+.claude/
