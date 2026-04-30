@@ -25,16 +25,16 @@ These are the connections noted within the network diagram, written in worded fo
 
 Format: *what you / opponent does → the system you have transitioned to*
 
-1. Opponent escapes back control into a bottom pin with a submission already being applied → **Pin Submissions**
-2. You transition into a top pin already applying a submission → **Pin Submissions**
-3. Opponent escapes to a bottom pin → **Pinning System**
-4. Opponent escapes to bottom turtle → **Top Turtle System**
-5. You enter the legs (either directly or through a truck system halfway) → **Offensive Leg Lock System**
-6. Opponent recovers guard → **Passing System**
-7. Opponent escapes to top position (not passed your guard) → **Offensive Guard System**
-8. Opponent escapes to top position (not yet passed your guard, but presenting threat of a pass) → **Guard Retention**
-9. Opponent manages to enter your legs → **Leg Lock Defence**
-10. Opponent escapes to top position (passed your guard) → **Pin Escapes**
+1. Opponent escapes back control into a bottom pin with a submission already being applied → [Pin Submissions](/systems/pin-submissions)
+2. You transition into a top pin already applying a submission → [Pin Submissions](/systems/pin-submissions)
+3. Opponent escapes to a bottom pin → [Pinning System](/systems/pinning-system)
+4. Opponent escapes to bottom turtle → [Top Turtle System](/systems/top-turtle-system)
+5. You enter the legs (either directly or through a truck system halfway) → [Offensive Leg Lock System](/systems/offensive-leg-lock-system)
+6. Opponent recovers guard → [Passing System](/systems/passing-system)
+7. Opponent escapes to top position (not passed your guard) → [Offensive Guard System](/systems/offensive-guard-system)
+8. Opponent escapes to top position (not yet passed your guard, but presenting threat of a pass) → [Guard Retention](/systems/guard-retention)
+9. Opponent manages to enter your legs → [Leg Lock Defence](/systems/leg-lock-defence)
+10. Opponent escapes to top position (passed your guard) → [Pin Escapes](/systems/pin-escapes)
 
 ## Notable athletes, coaches, sources
 

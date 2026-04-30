@@ -11,6 +11,6 @@ export const siteConfig = {
   defaultTitle: 'Fractal BJJ',
   defaultDescription:
     'A systems-thinking approach to high-level no-gi grappling. The full game broken into 19 interconnected systems.',
-  lastUpdated: '2026-04-27',
-  lastUpdatedDisplay: '27 April 2026',
+  lastUpdated: '2026-04-30',
+  lastUpdatedDisplay: '30 April 2026',
 } as const;
