@@ -1,16 +1,11 @@
 ---
 name: Bottom Turtle Defence
-category: defensive
-coreProblem: How do you survive and escape turtle position without conceding the back or being broken down into a worse pin?
-summary: Bottom turtle defence covers survival mechanics, back protection, sit-throughs, and transitions back to guard or neutral position from the turtle.
-order: 10
-complexity: 1
+coreProblem: From bottom turtle, how do you avoid the back-take and escape to a better position?
+summary: The most defensive of the systems — the smallest set of meaningful options.
 ---
 
-## In development
+> This system page is being built out. Below is a list of primary sources informing its development.
 
-This system page is being built out. Below is a list of primary sources informing its development.
+## Notable athletes, coaches, sources
 
-### Primary sources
-
-- <!-- athlete / coach / source -->
+*Sources informing this system will be listed here as the page is built out.*

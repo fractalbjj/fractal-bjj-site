@@ -1,16 +1,11 @@
 ---
 name: Scrambling
-category: general
-coreProblem: How do you navigate undefined transitional positions to end up in a dominant or neutral position rather than a losing one?
-summary: Scrambling covers movement through undefined positional chaos — hip height, head position, and finding top position or exposing submissions when neither athlete has clear control.
-order: 19
-complexity: 3
+coreProblem: When the position is unclear and both players are competing for it, how do you come out on top?
+summary: The general system that connects everything else — what to do when the position is genuinely undefined.
 ---
 
-## In development
+> This system page is being built out. Below is a list of primary sources informing its development.
 
-This system page is being built out. Below is a list of primary sources informing its development.
+## Notable athletes, coaches, sources
 
-### Primary sources
-
-- <!-- athlete / coach / source -->
+*Sources informing this system will be listed here as the page is built out.*

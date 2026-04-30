@@ -1,0 +1,124 @@
+---
+import { getCollection, render } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import {
+  getSystemBySlug,
+  getSystemByNumber,
+  formatNumber,
+  type SystemMeta,
+} from '../../data/systems';
+
+export async function getStaticPaths() {
+  const entries = await getCollection('systems');
+  return entries.map((entry) => ({
+    params: { slug: entry.id },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+
+const meta = getSystemBySlug(entry.id);
+if (!meta) {
+  throw new Error(
+    `No metadata found in src/data/systems.ts for slug "${entry.slug}". ` +
+    `The .md filename must match the slug field for one of the 19 systems.`
+  );
+}
+
+// Resolve counterpart name(s) for display in the meta grid
+const resolveCounterpart = (cp: SystemMeta['counterpart']) => {
+  if (cp === undefined) return null;
+  const arr = Array.isArray(cp) ? cp : [cp];
+  return arr.map((n) => {
+    const m = getSystemByNumber(n);
+    return m ? { number: n, name: m.name, slug: m.slug } : null;
+  }).filter(Boolean) as { number: number; name: string; slug: string }[];
+};
+const counterparts = resolveCounterpart(meta.counterpart);
+
+const categoryLabel = {
+  offensive: 'Offensive',
+  defensive: 'Defensive',
+  general:   'General',
+}[meta.category];
+
+const statusLabel = {
+  'stub':   'Stub',
+  'in-dev': 'In development',
+  'live':   'Live',
+}[meta.status];
+
+const statusValueClass = {
+  'stub':   '',
+  'in-dev': 'status-dev',
+  'live':   'status-live',
+}[meta.status];
+---
+
+<Layout
+  title={entry.data.name}
+  description={entry.data.summary ?? entry.data.coreProblem}
+>
+  <header class="system-page-header">
+    <a href="/systems" class="back-link">← All systems</a>
+
+    <div class="system-num-line">
+      <span class="num">System {formatNumber(meta.number)}</span>
+      <span class="sep"></span>
+      <span>{categoryLabel}</span>
+    </div>
+
+    <h1>{entry.data.name}</h1>
+
+    <p class="core-problem">{entry.data.coreProblem}</p>
+
+    <div class="meta-grid">
+      <div class="meta-item">
+        <span class="label">Complexity</span>
+        <span class="value">
+          <span class="complexity-dots">
+            {Array.from({ length: 5 }).map((_, i) => (
+              <span class={i < meta.complexity ? 'on' : ''}></span>
+            ))}
+          </span>
+        </span>
+      </div>
+
+      <div class="meta-item">
+        <span class="label">Status</span>
+        <span class={`value ${statusValueClass}`}>{statusLabel}</span>
+      </div>
+
+      {counterparts && counterparts.length > 0 && (
+        <div class="meta-item">
+          <span class="label">Counterpart</span>
+          <span class="value">
+            {counterparts.map((cp, i) => (
+              <>
+                {i > 0 && <span>,&nbsp;</span>}
+                <a href={`/systems/${cp.slug}`}>
+                  <span class="pair-arrow">↔</span>{formatNumber(cp.number)}
+                </a>
+              </>
+            ))}
+          </span>
+        </div>
+      )}
+
+      {meta.counterpart === undefined && meta.category === 'offensive' && (
+        <div class="meta-item">
+          <span class="label">Counterpart</span>
+          <span class="value">— none</span>
+        </div>
+      )}
+    </div>
+  </header>
+
+  <article class="reading-layout">
+    <div class="prose">
+      <Content />
+    </div>
+  </article>
+</Layout>

@@ -1,16 +1,11 @@
 ---
 name: Offensive Guard System
-category: offensive
-coreProblem: How do you create meaningful offensive threats from guard, sweep, submit, or take the back against a standing or grounded opponent?
-summary: The offensive guard system covers all forms of open guard — sweeping, back-taking, leg entries, and creating positional dilemmas for a passing opponent. One of the most complex systems in the game.
-order: 15
-complexity: 5
+coreProblem: How do you sweep, submit, or stand up from a bottom guard position?
+summary: An open framework system covering the major guards — the principles that connect them, the sub-systems within each.
 ---
 
-## In development
+> This system page is being built out. Below is a list of primary sources informing its development.
 
-This system page is being built out. Below is a list of primary sources informing its development.
+## Notable athletes, coaches, sources
 
-### Primary sources
-
-- <!-- athlete / coach / source -->
+*Sources informing this system will be listed here as the page is built out.*

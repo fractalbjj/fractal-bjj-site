@@ -1,16 +1,11 @@
 ---
 name: Top Turtle System
-category: offensive
-coreProblem: How do you break down turtle defence, take the back, and prevent the opponent from escaping or reversing?
-summary: The top turtle system covers back-takes, crucifix attacks, and pressure strategies against a turtled opponent — preventing dynamic rolling escapes and forcing the opponent to carry weight.
-order: 9
-complexity: 2
+coreProblem: When the opponent is in turtle, how do you break them down and progress to back control or a pin?
+summary: Turtle breakdowns, back-takes, the truck, and submissions from turtle.
 ---
 
-## In development
+> This system page is being built out. Below is a list of primary sources informing its development.
 
-This system page is being built out. Below is a list of primary sources informing its development.
+## Notable athletes, coaches, sources
 
-### Primary sources
-
-- <!-- athlete / coach / source -->
+*Sources informing this system will be listed here as the page is built out.*

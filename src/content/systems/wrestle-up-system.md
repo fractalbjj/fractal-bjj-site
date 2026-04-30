@@ -1,16 +1,11 @@
 ---
 name: Wrestle Up System
-category: offensive
-coreProblem: How do you stand and return to a neutral or dominant position from bottom guard while threatening your own attacks in the process?
-summary: The wrestle up system covers all methods of returning to standing from guard — combining upper and lower body threats with sweep attempts to create genuine dilemmas for the top player.
-order: 18
-complexity: 2
+coreProblem: From a downed position, how do you stand back up and reverse the hierarchy?
+summary: Single-leg and double-leg wrestle-ups from various seated and bottom positions.
 ---
 
-## In development
+> This system page is being built out. Below is a list of primary sources informing its development.
 
-This system page is being built out. Below is a list of primary sources informing its development.
+## Notable athletes, coaches, sources
 
-### Primary sources
-
-- <!-- athlete / coach / source -->
+*Sources informing this system will be listed here as the page is built out.*

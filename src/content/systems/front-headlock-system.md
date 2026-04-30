@@ -1,16 +1,11 @@
 ---
 name: Front Headlock System
-category: offensive
-coreProblem: How do you prevent guard recovery, threaten submissions, and advance to back control from a front headlock position?
-summary: The front headlock system covers the offensive use of front headlock control — guillotines, darcechokes, back-takes, and preventing the opponent from wrestling up or recovering guard.
-order: 7
-complexity: 3
+coreProblem: How do you punish a downed opponent's posture to take the back, secure a pin, or finish a guillotine?
+summary: Front headlock control, attack hierarchy, and the transitions out of it.
 ---
 
-## In development
+> This system page is being built out. Below is a list of primary sources informing its development.
 
-This system page is being built out. Below is a list of primary sources informing its development.
+## Notable athletes, coaches, sources
 
-### Primary sources
-
-- <!-- athlete / coach / source -->
+*Sources informing this system will be listed here as the page is built out.*

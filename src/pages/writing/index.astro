@@ -1,0 +1,41 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('blog'))
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+
+const formatDate = (d: Date) =>
+  d.toLocaleDateString('en-GB', { month: 'long', year: 'numeric' });
+
+const capitalise = (s: string) => s[0].toUpperCase() + s.slice(1);
+---
+
+<Layout
+  title="Writing"
+  description="Conceptual essays, repository updates, and analysis of where the sport is heading."
+>
+  <section class="writing-index">
+    <header class="page-header">
+      <span class="eyebrow">Writing</span>
+      <h1>All <em>writing</em>.</h1>
+      <p>Three main kinds of pieces live here. Conceptual writing, repository updates, and sport analysis.</p>
+
+    </header>
+
+    <div class="articles-list">
+      {posts.map((post) => (
+        <a href={`/writing/${post.id}`} class="article-row">
+          <div class="meta">
+            <span class="category">{capitalise(post.data.category)}</span>
+            <span class="date">{formatDate(post.data.pubDate)}</span>
+          </div>
+          <div>
+            <h3>{post.data.title}</h3>
+            <p>{post.data.description}</p>
+          </div>
+        </a>
+      ))}
+    </div>
+  </section>
+</Layout>

@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm run *)",
+      "Bash(git add *)",
+      "Bash(git commit -m ' *)",
+      "Bash(git push *)",
+      "Bash(curl *)",
+      "Bash(rm /c/Users/daosc/Projects/fractal-bjj-site/src/pages/systems/\\\\[slug\\\\].astro)",
+      "Bash(rm /c/Users/daosc/Projects/fractal-bjj-site/src/pages/blog/\\\\[...slug\\\\].astro)",
+      "Bash(npx astro *)",
+      "Bash(kill %1)"
+    ]
+  }
+}

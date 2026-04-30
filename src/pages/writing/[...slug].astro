@@ -1,0 +1,44 @@
+---
+import { getCollection, render } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+
+export async function getStaticPaths() {
+  const entries = await getCollection('blog');
+  return entries.map((entry) => ({
+    params: { slug: entry.id },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+
+const formatDate = (d: Date) =>
+  d.toLocaleDateString('en-GB', {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric',
+  });
+
+const capitalise = (s: string) => s[0].toUpperCase() + s.slice(1);
+---
+
+<Layout
+  title={entry.data.title}
+  description={entry.data.description}
+>
+  <article class="reading-layout">
+    <a href="/writing" class="back-link">← All writing</a>
+
+    <span class="article-eyebrow">{capitalise(entry.data.category)}</span>
+    <h1>{entry.data.title}</h1>
+
+    <div class="article-meta">
+      <span><strong>Published</strong> {formatDate(entry.data.pubDate)}</span>
+    </div>
+
+    <div class="prose">
+      <Content />
+    </div>
+  </article>
+</Layout>

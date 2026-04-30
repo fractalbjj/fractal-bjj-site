@@ -1,16 +1,11 @@
 ---
 name: Back Control Defence
-category: defensive
-coreProblem: How do you defend and escape back control without conceding a submission?
-summary: Back control defence covers submission defence, hip escape mechanics, and methods of recovering guard or reversing to a neutral position from the back.
-order: 12
-complexity: 2
+coreProblem: When the opponent has back control, how do you defend the choke and escape?
+summary: The mirror image of the back attack system — same alignments, opposite goals.
 ---
 
-## In development
+> This system page is being built out. Below is a list of primary sources informing its development.
 
-This system page is being built out. Below is a list of primary sources informing its development.
+## Notable athletes, coaches, sources
 
-### Primary sources
-
-- <!-- athlete / coach / source -->
+*Sources informing this system will be listed here as the page is built out.*

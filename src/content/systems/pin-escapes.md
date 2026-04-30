@@ -1,16 +1,11 @@
 ---
 name: Pin Escapes
-category: defensive
-coreProblem: How do you escape a pin without conceding a worse position or exposing yourself to submission?
-summary: Pin escapes covers the methods for recovering guard or reversing position when pinned — frames, bridges, misdirection, and chained escapes.
-order: 4
-complexity: 2
+coreProblem: When pinned, how do you re-establish guard or get back to a neutral position?
+summary: Escapes from side control, mount, knee on belly, and north–south.
 ---
 
-## In development
+> This system page is being built out. Below is a list of primary sources informing its development.
 
-This system page is being built out. Below is a list of primary sources informing its development.
+## Notable athletes, coaches, sources
 
-### Primary sources
-
-- <!-- athlete / coach / source -->
+*Sources informing this system will be listed here as the page is built out.*

@@ -1,16 +1,11 @@
 ---
 name: Pin Submission Escapes
-category: defensive
-coreProblem: How do you defend and escape a submission attempt from a dominant pin without conceding position further?
-summary: Pin submission escapes covers late-stage and early-stage submission defence from pinned positions — stacking, framing, and recovering guard under submission threat.
-order: 6
-complexity: 2
+coreProblem: When a submission is being applied from a pin, how do you defend without making the position worse?
+summary: Defending strangulations and joint locks while pinned, without compromising the underlying escape.
 ---
 
-## In development
+> This system page is being built out. Below is a list of primary sources informing its development.
 
-This system page is being built out. Below is a list of primary sources informing its development.
+## Notable athletes, coaches, sources
 
-### Primary sources
-
-- <!-- athlete / coach / source -->
+*Sources informing this system will be listed here as the page is built out.*

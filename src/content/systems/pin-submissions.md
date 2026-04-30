@@ -1,16 +1,11 @@
 ---
 name: Pin Submissions
-category: offensive
-coreProblem: How do you finish a submission from a dominant pin without conceding the position in the process?
-summary: Pin submissions covers the mechanics of attacking submissions from top position — armbars, chokes, and kimuras from mount, side control, and north-south — while maintaining control throughout.
-order: 5
-complexity: 2
+coreProblem: From a pin, what are the highest-percentage submissions and how do you prioritise between them?
+summary: Strangulations and joint locks available from pinning positions, and the logic for choosing between them.
 ---
 
-## In development
+> This system page is being built out. Below is a list of primary sources informing its development.
 
-This system page is being built out. Below is a list of primary sources informing its development.
+## Notable athletes, coaches, sources
 
-### Primary sources
-
-- <!-- athlete / coach / source -->
+*Sources informing this system will be listed here as the page is built out.*

@@ -1,16 +1,11 @@
 ---
 name: Pinning System
-category: offensive
-coreProblem: How do you maintain and exploit a dominant pin, prevent escape, and transition between pins to build pressure?
-summary: The pinning system covers maintaining and transitioning between dominant top positions — side control, mount, north-south — to build pressure, deny movement, and create submission opportunities.
-order: 3
-complexity: 2
+coreProblem: Once the guard is passed, how do you maintain top control and progress towards submission?
+summary: Side control, mount, knee on belly, north–south. Holding, transitioning, isolating.
 ---
 
-## In development
+> This system page is being built out. Below is a list of primary sources informing its development.
 
-This system page is being built out. Below is a list of primary sources informing its development.
+## Notable athletes, coaches, sources
 
-### Primary sources
-
-- <!-- athlete / coach / source -->
+*Sources informing this system will be listed here as the page is built out.*

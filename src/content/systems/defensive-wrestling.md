@@ -1,16 +1,11 @@
 ---
 name: Defensive Wrestling
-category: defensive
-coreProblem: How do you prevent an opponent from securing dominant connections and controlling the standup phase?
-summary: Defensive wrestling covers preventing dominant grips and connections, defending takedown attempts, and recovering neutral position from inferior standup situations.
-order: 17
-complexity: 3
+coreProblem: When the opponent shoots or pressures forward, how do you avoid the takedown without giving up position?
+summary: Counterpart to both Offensive Wrestling and the Wrestle Up System — sprawl, downblock, whizzer, and the chains that follow.
 ---
 
-## In development
+> This system page is being built out. Below is a list of primary sources informing its development.
 
-This system page is being built out. Below is a list of primary sources informing its development.
+## Notable athletes, coaches, sources
 
-### Primary sources
-
-- <!-- athlete / coach / source -->
+*Sources informing this system will be listed here as the page is built out.*

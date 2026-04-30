@@ -1,0 +1,112 @@
+---
+/**
+ * Reusable SystemsList component.
+ * Renders the three category groups with all 19 systems,
+ * driven entirely by the metadata in src/data/systems.ts.
+ *
+ * Used on:
+ *  - Homepage (src/pages/index.astro)
+ *  - Systems index (src/pages/systems/index.astro)
+ */
+import {
+  getSystemsByCategory,
+  formatCounterpart,
+  formatNumber,
+  type SystemMeta,
+} from '../data/systems';
+
+const offensive = getSystemsByCategory('offensive');
+const defensive = getSystemsByCategory('defensive');
+const general   = getSystemsByCategory('general');
+
+const statusLabel: Record<SystemMeta['status'], string> = {
+  'stub':   'stub',
+  'in-dev': 'in dev',
+  'live':   'live',
+};
+
+const statusClass: Record<SystemMeta['status'], string> = {
+  'stub':   '',
+  'in-dev': 'dev',
+  'live':   'live',
+};
+---
+
+<div class="system-group">
+  <div class="group-title-bar">
+    <h3>Offensive</h3>
+    <span class="group-meta">{offensive.length} systems</span>
+  </div>
+  <div class="system-grid">
+    {offensive.map((s) => (
+      <a href={`/systems/${s.slug}`} class="system-row">
+        <span class="num">{formatNumber(s.number)}</span>
+        <span class="name-cell">
+          <span class="name">{s.name}</span>
+          {s.counterpart !== undefined ? (
+            <span class="pair" title={`Counterpart: ${formatCounterpart(s.counterpart)}`}>
+              <span class="arrow">↔</span>{formatCounterpart(s.counterpart)}
+            </span>
+          ) : (
+            <span class="pair none" title="No direct defensive counterpart">—</span>
+          )}
+        </span>
+        <span class="complexity-dots">
+          {Array.from({ length: 5 }).map((_, i) => (
+            <span class={i < s.complexity ? 'on' : ''}></span>
+          ))}
+        </span>
+        <span class={`status ${statusClass[s.status]}`}>{statusLabel[s.status]}</span>
+      </a>
+    ))}
+  </div>
+</div>
+
+<div class="system-group">
+  <div class="group-title-bar">
+    <h3>Defensive</h3>
+    <span class="group-meta">{defensive.length} systems</span>
+  </div>
+  <div class="system-grid">
+    {defensive.map((s) => (
+      <a href={`/systems/${s.slug}`} class="system-row">
+        <span class="num">{formatNumber(s.number)}</span>
+        <span class="name-cell">
+          <span class="name">{s.name}</span>
+          <span class="pair" title={`Counterpart: ${formatCounterpart(s.counterpart)}`}>
+            <span class="arrow">↔</span>{formatCounterpart(s.counterpart)}
+          </span>
+        </span>
+        <span class="complexity-dots">
+          {Array.from({ length: 5 }).map((_, i) => (
+            <span class={i < s.complexity ? 'on' : ''}></span>
+          ))}
+        </span>
+        <span class={`status ${statusClass[s.status]}`}>{statusLabel[s.status]}</span>
+      </a>
+    ))}
+  </div>
+</div>
+
+<div class="system-group general">
+  <div class="group-title-bar">
+    <h3>General</h3>
+    <span class="group-meta">{general.length} system</span>
+  </div>
+  <div class="system-grid">
+    {general.map((s) => (
+      <a href={`/systems/${s.slug}`} class="system-row">
+        <span class="num">{formatNumber(s.number)}</span>
+        <span class="name-cell">
+          <span class="name">{s.name}</span>
+        </span>
+        <span class="complexity-dots">
+          {Array.from({ length: 5 }).map((_, i) => (
+            <span class={i < s.complexity ? 'on' : ''}></span>
+          ))}
+        </span>
+        <span class={`status ${statusClass[s.status]}`}>{statusLabel[s.status]}</span>
+      </a>
+    ))}
+  </div>
+</div>
