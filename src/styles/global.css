@@ -666,6 +666,13 @@ nav.primary a[aria-current="page"] { color: var(--accent); }
   padding-bottom: 1px;
 }
 .prose a:hover { color: var(--ink); border-color: var(--ink); }
+.prose ol a {
+  color: var(--ink);
+  border-bottom: none;
+  padding-bottom: 0;
+  font-weight: 600;
+}
+.prose ol a:hover { color: var(--ink); border-color: transparent; }
 .prose blockquote {
   border-left: 2px solid var(--accent);
   padding-left: 1.4em;
