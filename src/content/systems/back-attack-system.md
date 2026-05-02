@@ -25,16 +25,17 @@ These are the connections noted within the network diagram, written in worded fo
 
 Format: *what you / opponent does → the system you have transitioned to*
 
-1. Opponent escapes back control into a bottom pin with a submission already being applied → [Pin Submissions](/systems/pin-submissions)
-2. You transition into a top pin already applying a submission → [Pin Submissions](/systems/pin-submissions)
-3. Opponent escapes to a bottom pin → [Pinning System](/systems/pinning-system)
-4. Opponent escapes to bottom turtle → [Top Turtle System](/systems/top-turtle-system)
-5. You enter the legs (either directly or through a truck system halfway) → [Offensive Leg Lock System](/systems/offensive-leg-lock-system)
-6. Opponent recovers guard → [Passing System](/systems/passing-system)
-7. Opponent escapes to top position (not passed your guard) → [Offensive Guard System](/systems/offensive-guard-system)
-8. Opponent escapes to top position (not yet passed your guard, but presenting threat of a pass) → [Guard Retention](/systems/guard-retention)
-9. Opponent manages to enter your legs → [Leg Lock Defence](/systems/leg-lock-defence)
-10. Opponent escapes to top position (passed your guard) → [Pin Escapes](/systems/pin-escapes)
+1. Back control transitions to [Pin Submissions](/systems/pin-submissions) with a submission already applied:
+   - **(1a)** Opponent escapes back control into a bottom pin with a submission already being applied
+   - **(1b)** You transition into a top pin already applying a submission
+2. Opponent escapes to a bottom pin → [Pinning System](/systems/pinning-system)
+3. Opponent escapes to bottom turtle → [Top Turtle System](/systems/top-turtle-system)
+4. You enter the legs (either directly or through a truck system halfway) → [Offensive Leg Lock System](/systems/offensive-leg-lock-system)
+5. Opponent recovers guard → [Passing System](/systems/passing-system)
+6. Opponent escapes to top position (not passed your guard) → [Offensive Guard System](/systems/offensive-guard-system)
+7. Opponent escapes to top position (not yet passed your guard, but presenting threat of a pass) → [Guard Retention](/systems/guard-retention)
+8. Opponent manages to enter your legs → [Leg Lock Defence](/systems/leg-lock-defence)
+9. Opponent escapes to top position (passed your guard) → [Pin Escapes](/systems/pin-escapes)
 
 ## Notable athletes, coaches, sources
 
