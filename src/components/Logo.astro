@@ -1,0 +1,37 @@
+---
+interface Props {
+  size?: number;
+}
+const { size = 30 } = Astro.props;
+---
+<svg
+  width={size}
+  height={size}
+  viewBox="0 0 100 100"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="1.4"
+  stroke-linejoin="miter"
+  xmlns="http://www.w3.org/2000/svg"
+  aria-hidden="true"
+  style="color: var(--accent);"
+>
+  <!-- Outer equilateral triangle: apex (50,6), base (6,82)–(94,82) -->
+  <polygon points="50,6 6,82 94,82" />
+  <!-- Level 1 inverted hole -->
+  <polygon points="28,44 72,44 50,82" />
+  <!-- Level 2 inverted holes (one per level-1 sub-triangle) -->
+  <polygon points="39,25 61,25 50,44" />
+  <polygon points="17,63 39,63 28,82" />
+  <polygon points="61,63 83,63 72,82" />
+  <!-- Level 3 inverted holes (one per level-2 sub-triangle, 9 total) -->
+  <polygon points="44.5,15.5 55.5,15.5 50,25" />
+  <polygon points="33.5,34.5 44.5,34.5 39,44" />
+  <polygon points="55.5,34.5 66.5,34.5 61,44" />
+  <polygon points="22.5,53.5 33.5,53.5 28,63" />
+  <polygon points="11.5,72.5 22.5,72.5 17,82" />
+  <polygon points="33.5,72.5 44.5,72.5 39,82" />
+  <polygon points="66.5,53.5 77.5,53.5 72,63" />
+  <polygon points="55.5,72.5 66.5,72.5 61,82" />
+  <polygon points="77.5,72.5 88.5,72.5 83,82" />
+</svg>
