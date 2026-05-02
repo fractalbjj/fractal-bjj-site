@@ -62,7 +62,7 @@ const statusValueClass = {
   description={entry.data.summary ?? entry.data.coreProblem}
 >
   <header class="system-page-header">
-    <a href="/systems" class="back-link">← All systems</a>
+    <a href="/systems" class="back-link" data-pagefind-ignore>← All systems</a>
 
     <div class="system-num-line">
       <span class="num">System {formatNumber(meta.number)}</span>
@@ -70,11 +70,11 @@ const statusValueClass = {
       <span>{categoryLabel}</span>
     </div>
 
-    <h1>{entry.data.name}</h1>
+    <h1 data-pagefind-meta="title">{entry.data.name}</h1>
 
     <p class="core-problem">{entry.data.coreProblem}</p>
 
-    <div class="meta-grid">
+    <div class="meta-grid" data-pagefind-ignore>
       <div class="meta-item">
         <span class="label">Complexity</span>
         <span class="value">
@@ -116,7 +116,7 @@ const statusValueClass = {
     </div>
   </header>
 
-  <article class="reading-layout">
+  <article class="reading-layout" data-pagefind-body>
     <div class="prose">
       <Content />
     </div>

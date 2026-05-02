@@ -1056,3 +1056,103 @@ footer.site {
   .writing-index { padding: 2.5rem 1.4rem; }
   .writing-index .article-row { grid-template-columns: 1fr; gap: 0.6rem; }
 }
+
+/* ============================================
+   16. SEARCH MODAL & PAGEFIND UI
+   ============================================ */
+
+/* Pagefind CSS variable overrides.
+   Defined on #search-modal (ID specificity) so they win over
+   pagefind-ui.css's :root declarations regardless of load order. */
+#search-modal {
+  --pagefind-ui-scale: 0.9;
+  --pagefind-ui-primary: var(--accent);
+  --pagefind-ui-text: var(--ink);
+  --pagefind-ui-background: var(--paper);
+  --pagefind-ui-border: var(--rule);
+  --pagefind-ui-tag: var(--paper-warm);
+  --pagefind-ui-border-width: 1px;
+  --pagefind-ui-border-radius: 0px;
+  --pagefind-ui-image-border-radius: 0px;
+  --pagefind-ui-font: var(--font-sans);
+}
+
+/* Modal shown state — hidden attribute provides display:none by default */
+#search-modal:not([hidden]) {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+}
+
+#search-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(28, 26, 22, 0.55);
+}
+
+#search-panel {
+  position: relative;
+  z-index: 1;
+  width: calc(100% - 4.4rem);
+  max-width: 640px;
+  margin-top: 10vh;
+  max-height: 75vh;
+  overflow-y: auto;
+  background: var(--paper);
+  border: 1px solid var(--rule);
+  padding: 1.2rem 1.5rem 1.5rem;
+}
+
+/* Search nav trigger */
+.search-nav-btn {
+  appearance: none;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  color: var(--ink-soft);
+  font-family: var(--font-sans);
+  font-size: 0.92rem;
+  font-weight: 500;
+  letter-spacing: 0.005em;
+  transition: color 0.15s;
+}
+.search-nav-btn:hover { color: var(--accent); }
+
+/* Pagefind UI — typography and visual overrides.
+   Uses #search-modal prefix for specificity over pagefind-ui.css. */
+#search-modal .pagefind-ui__result-title {
+  font-family: var(--font-serif);
+  font-variation-settings: "opsz" 24;
+  font-weight: 600;
+  letter-spacing: -0.005em;
+}
+#search-modal .pagefind-ui__result-excerpt {
+  font-size: 0.88rem;
+  color: var(--ink-soft);
+  line-height: 1.55;
+}
+#search-modal .pagefind-ui mark {
+  background: transparent;
+  color: var(--accent);
+  font-weight: 600;
+}
+#search-modal .pagefind-ui__result {
+  border-bottom: 1px solid var(--rule-soft);
+}
+#search-modal .pagefind-ui__search-input {
+  font-family: var(--font-sans) !important;
+}
+
+@media (max-width: 880px) {
+  #search-panel {
+    width: calc(100% - 2.8rem);
+    margin-top: 6vh;
+  }
+}
