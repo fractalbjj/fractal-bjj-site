@@ -1091,6 +1091,7 @@ footer.site {
   position: fixed;
   inset: 0;
   background: rgba(28, 26, 22, 0.55);
+  pointer-events: none;
 }
 
 #search-panel {

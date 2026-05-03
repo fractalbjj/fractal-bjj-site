@@ -129,8 +129,12 @@ const isActive = (path: string) =>
         var trigger = document.getElementById('search-trigger');
         if (trigger) trigger.addEventListener('click', openSearchModal);
 
-        var backdrop = document.getElementById('search-backdrop');
-        if (backdrop) backdrop.addEventListener('click', closeSearchModal);
+        var modalEl = document.getElementById('search-modal');
+        if (modalEl) {
+          modalEl.addEventListener('click', function (e) {
+            if (!e.target.closest('#search-panel')) closeSearchModal();
+          });
+        }
 
         var panel = document.getElementById('search-panel');
         if (panel) {
