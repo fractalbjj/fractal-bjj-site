@@ -992,6 +992,21 @@ footer.site {
   letter-spacing: 0.06em;
 }
 
+/* Hamburger menu (mobile only — shown via responsive section below) */
+.hamburger-btn {
+  display: none;
+  appearance: none;
+  background: none;
+  border: none;
+  padding: 0.2rem;
+  cursor: pointer;
+  color: var(--ink-soft);
+  transition: color 0.15s;
+  align-items: center;
+  justify-content: center;
+}
+.hamburger-btn:hover { color: var(--accent); }
+
 /* ============================================
    15. RESPONSIVE
    ============================================ */
@@ -1125,21 +1140,6 @@ footer.site {
   transition: color 0.15s;
 }
 .search-nav-btn:hover { color: var(--accent); }
-
-/* Hamburger menu (mobile only) */
-.hamburger-btn {
-  display: none;
-  appearance: none;
-  background: none;
-  border: none;
-  padding: 0.2rem;
-  cursor: pointer;
-  color: var(--ink-soft);
-  transition: color 0.15s;
-  align-items: center;
-  justify-content: center;
-}
-.hamburger-btn:hover { color: var(--accent); }
 
 /* Systems index note */
 .systems-index-note {
