@@ -39,7 +39,7 @@ const isActive = (path: string) =>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Manrope:wght@300;400;500;600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,300..700;1,8..60,300..700&display=swap" rel="stylesheet" />
 
   <link href="/pagefind/pagefind-ui.css" rel="stylesheet" />
-  <script src="/pagefind/pagefind-ui.js" is:inline></script>
+  <script src="/pagefind/pagefind-ui.js" is:inline defer></script>
 </head>
 <body>
 
@@ -56,6 +56,13 @@ const isActive = (path: string) =>
       <a href="/writing" aria-current={isActive('/writing') ? 'page' : undefined}>Writing</a>
       <a href="/approach" aria-current={isActive('/approach') ? 'page' : undefined}>Approach</a>
     </nav>
+    <button id="hamburger" class="hamburger-btn" type="button" aria-label="Open menu" aria-expanded="false" data-pagefind-ignore>
+      <svg width="20" height="16" viewBox="0 0 20 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true">
+        <line x1="0" y1="1" x2="20" y2="1"/>
+        <line x1="0" y1="8" x2="20" y2="8"/>
+        <line x1="0" y1="15" x2="20" y2="15"/>
+      </svg>
+    </button>
   </header>
 
   <div class="status-strip" data-pagefind-ignore>
@@ -108,7 +115,15 @@ const isActive = (path: string) =>
         searchInitialised = true;
       }
 
+      function closeMobileNav() {
+        var nav = document.querySelector('nav.primary');
+        var hbtn = document.getElementById('hamburger');
+        if (nav) nav.classList.remove('is-open');
+        if (hbtn) { hbtn.setAttribute('aria-expanded', 'false'); hbtn.setAttribute('aria-label', 'Open menu'); }
+      }
+
       function openSearchModal() {
+        closeMobileNav();
         var modal = document.getElementById('search-modal');
         if (!modal) return;
         previousFocus = document.activeElement;
@@ -154,6 +169,27 @@ const isActive = (path: string) =>
         if (panel) {
           panel.addEventListener('click', function (e) {
             if (e.target.closest && e.target.closest('a[href]')) closeSearchModal();
+          });
+        }
+
+        // Hamburger menu
+        var hamburger = document.getElementById('hamburger');
+        var primaryNav = document.querySelector('nav.primary');
+        if (hamburger && primaryNav) {
+          hamburger.addEventListener('click', function () {
+            var open = primaryNav.classList.toggle('is-open');
+            hamburger.setAttribute('aria-expanded', String(open));
+            hamburger.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+          });
+          // Close when a nav link is clicked
+          primaryNav.addEventListener('click', function (e) {
+            if (e.target.closest('a[href]')) closeMobileNav();
+          });
+          // Close when clicking outside the header
+          document.addEventListener('click', function (e) {
+            if (primaryNav.classList.contains('is-open') && !e.target.closest('header.site')) {
+              closeMobileNav();
+            }
           });
         }
       });

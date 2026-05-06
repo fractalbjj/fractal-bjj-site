@@ -22,7 +22,7 @@ const { Content } = await render(entry);
 const meta = getSystemBySlug(entry.id);
 if (!meta) {
   throw new Error(
-    `No metadata found in src/data/systems.ts for slug "${entry.slug}". ` +
+    `No metadata found in src/data/systems.ts for slug "${entry.id}". ` +
     `The .md filename must match the slug field for one of the 19 systems.`
   );
 }

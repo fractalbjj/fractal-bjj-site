@@ -1,6 +1,7 @@
 ---
 import { getCollection, render } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
+import { formatDate, capitalise } from '../../utils/format';
 
 export async function getStaticPaths() {
   const entries = await getCollection('blog');
@@ -12,15 +13,6 @@ export async function getStaticPaths() {
 
 const { entry } = Astro.props;
 const { Content } = await render(entry);
-
-const formatDate = (d: Date) =>
-  d.toLocaleDateString('en-GB', {
-    day: 'numeric',
-    month: 'long',
-    year: 'numeric',
-  });
-
-const capitalise = (s: string) => s[0].toUpperCase() + s.slice(1);
 ---
 
 <Layout
@@ -30,11 +22,11 @@ const capitalise = (s: string) => s[0].toUpperCase() + s.slice(1);
   <article class="reading-layout" data-pagefind-body>
     <a href="/writing" class="back-link" data-pagefind-ignore>← All writing</a>
 
-    <span class="article-eyebrow" data-pagefind-ignore>{capitalise(entry.data.category)}</span>
+    <span class="eyebrow" data-pagefind-ignore>{capitalise(entry.data.category)}</span>
     <h1 data-pagefind-meta="title">{entry.data.title}</h1>
 
     <div class="article-meta" data-pagefind-ignore>
-      <span><strong>Published</strong> <span data-pagefind-meta="date">{formatDate(entry.data.pubDate)}</span></span>
+      <span><strong>Published</strong> <span data-pagefind-meta="date">{formatDate(entry.data.pubDate, { day: 'numeric', month: 'long', year: 'numeric' })}</span></span>
     </div>
 
     <div class="prose">
