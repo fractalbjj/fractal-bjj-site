@@ -102,18 +102,6 @@ const isActive = (path: string) =>
   <script is:inline>
     (function () {
       var previousFocus = null;
-      var searchInitialised = false;
-
-      function initSearch() {
-        if (searchInitialised || !window.PagefindUI) return;
-        new window.PagefindUI({
-          element: '#search',
-          showImages: false,
-          resetStyles: false,
-          showSubResults: true,
-        });
-        searchInitialised = true;
-      }
 
       function closeMobileNav() {
         var nav = document.querySelector('nav.primary');
@@ -127,12 +115,9 @@ const isActive = (path: string) =>
         var modal = document.getElementById('search-modal');
         if (!modal) return;
         previousFocus = document.activeElement;
-        modal.removeAttribute('hidden');
+        modal.classList.add('is-open');
+        modal.setAttribute('aria-hidden', 'false');
         document.body.style.overflow = 'hidden';
-        // Initialise pagefind now that the container is visible in the DOM.
-        // Initialising inside display:none causes Svelte to mount without
-        // wiring up event handlers, so the input renders but won't respond.
-        initSearch();
         requestAnimationFrame(function () {
           var input = modal.querySelector('.pagefind-ui__search-input');
           if (input) {
@@ -149,12 +134,25 @@ const isActive = (path: string) =>
       function closeSearchModal() {
         var modal = document.getElementById('search-modal');
         if (!modal) return;
-        modal.setAttribute('hidden', '');
+        modal.classList.remove('is-open');
+        modal.setAttribute('aria-hidden', 'true');
         document.body.style.overflow = '';
         if (previousFocus) previousFocus.focus();
       }
 
       document.addEventListener('DOMContentLoaded', function () {
+        // Mount pagefind immediately — the modal uses visibility:hidden (not display:none),
+        // so the container has real dimensions and Svelte wires up event handlers correctly.
+        // Deferred scripts execute before DOMContentLoaded, so window.PagefindUI is ready.
+        if (window.PagefindUI) {
+          new window.PagefindUI({
+            element: '#search',
+            showImages: false,
+            resetStyles: false,
+            showSubResults: true,
+          });
+        }
+
         var trigger = document.getElementById('search-trigger');
         if (trigger) trigger.addEventListener('click', openSearchModal);
 
@@ -200,7 +198,7 @@ const isActive = (path: string) =>
           openSearchModal();
         } else if (e.key === 'Escape') {
           var modal = document.getElementById('search-modal');
-          if (modal && !modal.hasAttribute('hidden')) closeSearchModal();
+          if (modal && modal.classList.contains('is-open')) closeSearchModal();
         }
       });
     })();

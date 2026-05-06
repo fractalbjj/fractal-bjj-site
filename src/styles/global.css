@@ -1094,16 +1094,21 @@ footer.site {
   --pagefind-ui-border-radius: 0px;
   --pagefind-ui-image-border-radius: 0px;
   --pagefind-ui-font: var(--font-sans);
-}
-
-/* Modal shown state — hidden attribute provides display:none by default */
-#search-modal:not([hidden]) {
+  /* Always in the layout so pagefind mounts into a visible container;
+     hidden via visibility rather than display:none to preserve dimensions. */
   display: flex;
   align-items: flex-start;
   justify-content: center;
   position: fixed;
   inset: 0;
   z-index: 1000;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+#search-modal.is-open {
+  visibility: visible;
+  pointer-events: auto;
 }
 
 #search-backdrop {
