@@ -114,6 +114,14 @@ const statusValueClass = {
         </div>
       )}
     </div>
+
+    {meta.tags && meta.tags.length > 0 && (
+      <div class="system-tags" data-pagefind-ignore>
+        {meta.tags.map((tag) => (
+          <span class="system-tag">{tag}</span>
+        ))}
+      </div>
+    )}
   </header>
 
   <article class="reading-layout" data-pagefind-body>

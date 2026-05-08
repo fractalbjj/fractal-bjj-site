@@ -777,6 +777,24 @@ nav.primary a[aria-current="page"] { color: var(--accent); }
 .system-page-header .meta-item .value.status-live { color: var(--ink); font-weight: 600; }
 .system-page-header .meta-item .value .pair-arrow { color: var(--accent); margin-right: 0.1rem; }
 
+.system-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 0.85rem;
+}
+.system-tag {
+  border: 1px solid rgba(28, 26, 22, 0.4);
+  background: none;
+  border-radius: 999px;
+  padding: 0.32rem 0.7rem;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: rgba(28, 26, 22, 0.7);
+}
+
 /* Stub page content */
 .stub-content {
   max-width: var(--reading-width);

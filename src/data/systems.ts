@@ -20,6 +20,7 @@ export interface SystemMeta {
   complexity: 1 | 2 | 3 | 4 | 5;
   counterpart?: number | number[]; // counterpart system number(s); undefined = no counterpart
   status: Status;
+  tags?: string[];
 }
 
 export const systems: SystemMeta[] = [
@@ -29,7 +30,7 @@ export const systems: SystemMeta[] = [
   { number: 3,  slug: 'pin-submissions',          name: 'Pin Submissions',           category: 'offensive', complexity: 2, counterpart: 13, status: 'stub' },
   { number: 4,  slug: 'front-headlock-system',    name: 'Front Headlock System',     category: 'offensive', complexity: 3, counterpart: 14, status: 'stub' },
   { number: 5,  slug: 'top-turtle-system',        name: 'Top Turtle System',         category: 'offensive', complexity: 2, counterpart: 15, status: 'stub' },
-  { number: 6,  slug: 'back-attack-system',       name: 'Back Attack System',        category: 'offensive', complexity: 2, counterpart: 16, status: 'in-dev' },
+  { number: 6,  slug: 'back-attack-system',       name: 'Back Attack System',        category: 'offensive', complexity: 2, counterpart: 16, status: 'in-dev', tags: ['Top player', 'Dominant position', 'Submission', 'Progressive'] },
   { number: 7,  slug: 'offensive-guard-system',   name: 'Offensive Guard System',    category: 'offensive', complexity: 5,                  status: 'stub' },
   { number: 8,  slug: 'offensive-leg-lock-system',name: 'Offensive Leg Lock System', category: 'offensive', complexity: 4, counterpart: 17, status: 'stub' },
   { number: 9,  slug: 'offensive-wrestling-system',name:'Offensive Wrestling System',category: 'offensive', complexity: 5, counterpart: 18, status: 'stub' },
