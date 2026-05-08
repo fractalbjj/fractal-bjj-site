@@ -1229,7 +1229,7 @@ footer.site {
   border-bottom: 1px solid var(--rule);
 }
 .subblock-panel-inner {
-  max-width: var(--reading-width);
+  max-width: 52rem;
   margin: 0 auto;
   padding: 1.4rem 2rem 1.7rem;
 }
@@ -1265,7 +1265,7 @@ footer.site {
 }
 .subblock-tile-grid {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
   gap: 11px;
 }
 .subblock-tile {
