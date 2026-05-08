@@ -1226,9 +1226,14 @@ footer.site {
 .subblock-panel {
   background: #e8e1cd;
   border-top: 0.5px solid rgba(28, 26, 22, 0.14);
+  border-bottom: 1px solid var(--rule);
+}
+.subblock-panel-inner {
+  max-width: var(--reading-width);
+  margin: 0 auto;
   padding: 1.4rem 2rem 1.7rem;
 }
-.subblock-panel.condensed {
+.subblock-panel.condensed .subblock-panel-inner {
   padding: 1.1rem 2rem 1.4rem;
 }
 .panel-eyebrow {

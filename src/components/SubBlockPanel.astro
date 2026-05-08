@@ -42,6 +42,7 @@ const condensed = topLevel.length <= 6;
 
 {topLevel.length > 0 && (
   <div class:list={['subblock-panel', { condensed }]} data-pagefind-ignore>
+    <div class="subblock-panel-inner">
     <p class="panel-eyebrow">Going deeper</p>
     {groups.map(group => (
       <>
@@ -61,5 +62,6 @@ const condensed = topLevel.length <= 6;
         </div>
       </>
     ))}
+    </div>
   </div>
 )}
