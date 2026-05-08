@@ -1,0 +1,65 @@
+---
+import { getSubBlocksForSystem, getNestedCount, type SubBlockCategory } from '../data/subblocks';
+
+interface Props {
+  systemSlug: string;
+}
+
+const { systemSlug } = Astro.props;
+
+const CATEGORY_ORDER: SubBlockCategory[] = [
+  'sub-system',
+  'mechanics',
+  'specific-dilemmas',
+  'sub-positions',
+  'system-adjacent',
+];
+
+const CATEGORY_LABEL_GROUP: Record<SubBlockCategory, string> = {
+  'sub-system':        'Sub-systems',
+  'mechanics':         'Mechanics',
+  'specific-dilemmas': 'Specific dilemmas',
+  'sub-positions':     'Sub-positions',
+  'system-adjacent':   'System-adjacent',
+};
+
+const CATEGORY_LABEL_TILE: Record<SubBlockCategory, string> = {
+  'sub-system':        'Sub-system',
+  'mechanics':         'Mechanics',
+  'specific-dilemmas': 'Specific dilemma',
+  'sub-positions':     'Sub-position',
+  'system-adjacent':   'System-adjacent',
+};
+
+const topLevel = getSubBlocksForSystem(systemSlug);
+
+const groups = CATEGORY_ORDER
+  .map(cat => ({ cat, items: topLevel.filter(sb => sb.category === cat) }))
+  .filter(g => g.items.length > 0);
+
+const condensed = topLevel.length <= 6;
+---
+
+{topLevel.length > 0 && (
+  <div class:list={['subblock-panel', { condensed }]} data-pagefind-ignore>
+    <p class="panel-eyebrow">Going deeper</p>
+    {groups.map(group => (
+      <>
+        <p class="subblock-group-header">{CATEGORY_LABEL_GROUP[group.cat]}</p>
+        <div class="subblock-tile-grid">
+          {group.items.map(sb => {
+            const nestedCount = getNestedCount(sb.slug);
+            return (
+              <a href={`/systems/${systemSlug}/${sb.slug}`} class={`subblock-tile tile-cat-${sb.category}`}>
+                <p class="tile-category">{CATEGORY_LABEL_TILE[group.cat]}</p>
+                <p class="tile-title">{sb.title}</p>
+                {nestedCount > 0 && <p class="tile-nested">↳ {nestedCount} nested</p>}
+                <p class="tile-preview">{sb.preview}</p>
+              </a>
+            );
+          })}
+        </div>
+      </>
+    ))}
+  </div>
+)}

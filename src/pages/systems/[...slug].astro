@@ -1,6 +1,7 @@
 ---
 import { getCollection, render } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
+import SubBlockPanel from '../../components/SubBlockPanel.astro';
 import {
   getSystemBySlug,
   getSystemByNumber,
@@ -129,4 +130,5 @@ const statusValueClass = {
       <Content />
     </div>
   </article>
+  <SubBlockPanel systemSlug={entry.id} />
 </Layout>
