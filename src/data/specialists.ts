@@ -35,8 +35,8 @@ export const archetypes: Archetype[] = [
     totalAthleteCount: 9,
     athletes: [
       { name: 'Ffion Davies', tagline: 'Intense passing and top-side dominance.' },
-      { name: 'Diogo Reis', tagline: "'Baby Shark,' known for an immovable top game." },
       { name: 'Kaynan Duarte', tagline: 'Absolute power and heavy tripod passing.' },
+      { name: 'JT Torres', tagline: "The 'Essential' top pressure and back-take game." },
     ],
   },
   {
@@ -69,7 +69,7 @@ export const archetypes: Archetype[] = [
     athletes: [
       { name: 'Nicky Rodriguez', tagline: 'Transitioned from wrestling to elite BJJ, using explosive takedowns to dominate.' },
       { name: 'Brandon Reed', tagline: 'Elite collegiate background transitioned into a heavy No-Gi game.' },
-      { name: 'Josh Cisneros', tagline: 'High-level takedown game and wrestling-up style.' },
+      { name: 'Michael Pixley', tagline: 'Famous for his blend of upper body focused wrestling and throws.' },
     ],
   },
   {
@@ -91,7 +91,7 @@ export const archetypes: Archetype[] = [
     athletes: [
       { name: 'Levi Jones-Leary', tagline: 'The best No-Gi Bolos and K-Guard in the game today.' },
       { name: 'Paulo Miyao', tagline: 'Famous for the Berimbolo and a guard that was virtually impossible to pass.' },
-      { name: 'Joao Miyao', tagline: 'The unpassable, flexible wall of the Miyao legacy.' },
+      { name: 'Lachlan Giles', tagline: 'Master of the K-Guard and outside leg entries.' },
     ],
   },
   {
