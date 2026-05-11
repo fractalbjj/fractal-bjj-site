@@ -45,8 +45,8 @@ export const archetypes: Archetype[] = [
     colorRgb: '213, 120, 36',
     totalAthleteCount: 10,
     athletes: [
-      { name: 'Dorian Olivarez', tagline: 'Blistering speed and non-stop wrestling.' },
-      { name: 'Andrew Tackett', tagline: 'Absolute Tasmanian Devil on the mats.' },
+      { name: 'Dorian Olivarez', tagline: 'Blistering speed and pushes the pace non-stop.' },
+      { name: 'Andrew Tackett', tagline: 'Absolute cardio demon on the mats.' },
       { name: 'PJ Barch', tagline: 'High-intensity wrestling and scrambles that never stop.' },
     ],
   },
