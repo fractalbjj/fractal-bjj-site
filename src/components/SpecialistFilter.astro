@@ -1,0 +1,110 @@
+---
+import { archetypes, systemStrengths } from '../data/specialists';
+---
+
+<div class="specialist-filter-section">
+  <p class="specialist-eyebrow">Archetypes</p>
+  <p class="specialist-caption">Many specialists exist, and as such excel in the related areas.</p>
+
+  <div class="specialist-filter-row">
+    {archetypes.map((arch) => (
+      <button
+        class="archetype-btn"
+        type="button"
+        data-key={arch.key}
+        data-active="false"
+        style={`--c: ${arch.colorRgb};`}
+      >
+        {arch.label}
+        <span class="athlete-pop">
+          <span class="athlete-pop-label">Example athletes</span>
+          {arch.athletes.map((athlete) => (
+            <span class="athlete-row">
+              <span class="athlete-name">{athlete.name}</span>
+              <span class="athlete-tag">{athlete.tagline}</span>
+            </span>
+          ))}
+          <span class="athlete-foot">+ {arch.totalAthleteCount - 3} more in the full repository</span>
+        </span>
+      </button>
+    ))}
+  </div>
+</div>
+
+<script define:vars={{ STRENGTHS: systemStrengths }}>
+const ARCHETYPE_ORDER = [
+  'leg-locker', 'heavy-pressure', 'dynamic-cardio', 'sub-sniper',
+  'wrestler', 'scrambler', 'guard-player', 'all-rounder',
+];
+
+const COLORS = {
+  'leg-locker':     '161, 53, 37',
+  'heavy-pressure': '107, 85, 32',
+  'dynamic-cardio': '213, 120, 36',
+  'sub-sniper':     '107, 58, 160',
+  'wrestler':       '138, 90, 58',
+  'scrambler':      '90, 154, 74',
+  'guard-player':   '46, 107, 138',
+  'all-rounder':    '122, 116, 104',
+};
+
+let currentArchetype = null;
+
+function selectArchetype(key) {
+  if (currentArchetype === key) {
+    currentArchetype = null;
+    deactivateAllButtons();
+    clearTints();
+    return;
+  }
+
+  currentArchetype = key;
+
+  document.querySelectorAll('.archetype-btn').forEach((btn) => {
+    btn.dataset.active = btn.dataset.key === key ? 'true' : 'false';
+  });
+
+  // All-rounder activates the button visually but applies no row tinting —
+  // every system is equally relevant to a well-rounded game (all values are 0).
+  if (key === 'all-rounder') {
+    clearTints();
+    return;
+  }
+
+  applyTints(key);
+}
+
+function applyTints(key) {
+  const list = document.querySelector('[data-systems-list]');
+  if (!list) return;
+  list.dataset.filter = key;
+  list.style.setProperty('--filter-rgb', COLORS[key]);
+  const idx = ARCHETYPE_ORDER.indexOf(key);
+  document.querySelectorAll('[data-system]').forEach((row) => {
+    const n = parseInt(row.dataset.system, 10);
+    const scores = STRENGTHS[n];
+    row.dataset.strength = String(scores ? scores[idx] : 0);
+  });
+}
+
+function clearTints() {
+  const list = document.querySelector('[data-systems-list]');
+  if (list) {
+    delete list.dataset.filter;
+    list.style.removeProperty('--filter-rgb');
+  }
+  document.querySelectorAll('[data-system]').forEach((row) => {
+    delete row.dataset.strength;
+  });
+}
+
+function deactivateAllButtons() {
+  document.querySelectorAll('.archetype-btn').forEach((btn) => {
+    btn.dataset.active = 'false';
+  });
+}
+
+document.querySelectorAll('.archetype-btn').forEach((btn) => {
+  btn.addEventListener('click', () => selectArchetype(btn.dataset.key));
+});
+</script>

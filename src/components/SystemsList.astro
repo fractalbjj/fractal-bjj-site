@@ -32,6 +32,8 @@ const statusClass: Record<SystemMeta['status'], string> = {
 };
 ---
 
+<div data-systems-list>
+
 <div class="system-group">
   <div class="group-title-bar">
     <h3>Offensive</h3>
@@ -39,7 +41,7 @@ const statusClass: Record<SystemMeta['status'], string> = {
   </div>
   <div class="system-grid">
     {offensive.map((s) => (
-      <a href={`/systems/${s.slug}`} class="system-row">
+      <a href={`/systems/${s.slug}`} class="system-row" data-system={s.number}>
         <span class="num">{formatNumber(s.number)}</span>
         <span class="name-cell">
           <span class="name">{s.name}</span>
@@ -69,7 +71,7 @@ const statusClass: Record<SystemMeta['status'], string> = {
   </div>
   <div class="system-grid">
     {defensive.map((s) => (
-      <a href={`/systems/${s.slug}`} class="system-row">
+      <a href={`/systems/${s.slug}`} class="system-row" data-system={s.number}>
         <span class="num">{formatNumber(s.number)}</span>
         <span class="name-cell">
           <span class="name">{s.name}</span>
@@ -95,7 +97,7 @@ const statusClass: Record<SystemMeta['status'], string> = {
   </div>
   <div class="system-grid">
     {general.map((s) => (
-      <a href={`/systems/${s.slug}`} class="system-row">
+      <a href={`/systems/${s.slug}`} class="system-row" data-system={s.number}>
         <span class="num">{formatNumber(s.number)}</span>
         <span class="name-cell">
           <span class="name">{s.name}</span>
@@ -109,4 +111,6 @@ const statusClass: Record<SystemMeta['status'], string> = {
       </a>
     ))}
   </div>
+</div>
+
 </div>

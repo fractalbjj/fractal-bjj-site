@@ -1322,3 +1322,161 @@ footer.site {
 .tile-cat-sub-positions    .tile-category { color: var(--cat-subpos-label); }
 .tile-cat-system-adjacent  { border-color: var(--cat-adjacent-border); background: var(--cat-adjacent-bg); }
 .tile-cat-system-adjacent  .tile-category { color: var(--cat-adjacent-label); }
+
+/* ============================================
+   18. SPECIALIST FILTER (systems index page)
+   ============================================ */
+.specialist-filter-section {
+  /* The last .system-group already has margin-bottom: 2.5rem — no extra top margin needed. */
+}
+
+.specialist-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: rgba(28, 26, 22, 0.55);
+  margin: 0 0 0.45rem;
+}
+
+.specialist-caption {
+  font-family: var(--font-serif);
+  font-variation-settings: "opsz" 18;
+  font-size: 15px;
+  font-style: italic;
+  color: rgba(28, 26, 22, 0.7);
+  line-height: 1.55;
+  max-width: 60ch;
+  margin: 0 0 1.2rem;
+}
+
+.specialist-filter-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin: 0 0 1.5rem;
+}
+
+/* Archetype buttons — colour set per instance via --c inline custom property */
+.archetype-btn {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  font-weight: 500;
+  padding: 0.45rem 0.7rem;
+  border: 1px solid rgba(var(--c), 0.45);
+  border-radius: 6px;
+  background: transparent;
+  color: rgba(var(--c), 0.95);
+  cursor: pointer;
+  position: relative;
+  white-space: nowrap;
+  transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+
+.archetype-btn:hover {
+  background: rgba(var(--c), 0.12);
+}
+
+.archetype-btn[data-active="true"] {
+  background: rgba(var(--c), 0.92);
+  color: #f4ede0;
+  border-color: rgba(var(--c), 0.92);
+}
+
+.archetype-btn[data-active="true"]:hover {
+  background: rgba(var(--c), 1);
+}
+
+/* Athlete hover popover — CSS-only, pointer-events: none keeps cursor on button */
+.athlete-pop {
+  display: none;
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  background: #f1ebde;
+  border: 1px solid rgba(28, 26, 22, 0.22);
+  border-radius: 8px;
+  padding: 0.65rem 0.8rem 0.55rem;
+  min-width: 290px;
+  z-index: 50;
+  pointer-events: none;
+  text-transform: none;
+  letter-spacing: normal;
+  white-space: normal;
+  font-weight: 400;
+}
+
+.archetype-btn:hover .athlete-pop {
+  display: block;
+}
+
+.athlete-pop-label {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 500;
+  color: rgba(var(--c), 0.95);
+  margin: 0 0 0.5rem;
+}
+
+.athlete-row {
+  display: block;
+  margin-bottom: 0.4rem;
+}
+
+.athlete-row:last-of-type {
+  margin-bottom: 0;
+}
+
+.athlete-name {
+  display: block;
+  font-family: var(--font-serif);
+  font-size: 13px;
+  font-weight: 500;
+  color: #1c1a16;
+}
+
+.athlete-tag {
+  display: block;
+  font-family: var(--font-serif);
+  font-size: 12px;
+  font-style: italic;
+  color: rgba(28, 26, 22, 0.62);
+  margin-top: 1px;
+}
+
+.athlete-foot {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: rgba(28, 26, 22, 0.4);
+  margin: 0.6rem 0 0;
+}
+
+/* Smooth transitions on system rows inside the list container */
+[data-systems-list] .system-row {
+  transition: background 0.25s ease, opacity 0.3s ease, padding-left 0.12s;
+}
+
+/* Conditional tinting when a filter is active */
+[data-systems-list][data-filter] [data-system][data-strength="0"] {
+  opacity: 0.4;
+}
+
+[data-systems-list][data-filter] [data-system][data-strength="1"] {
+  background: rgba(var(--filter-rgb), 0.13);
+}
+
+[data-systems-list][data-filter] [data-system][data-strength="2"] {
+  background: rgba(var(--filter-rgb), 0.27);
+}
+
+[data-systems-list][data-filter] [data-system][data-strength="3"] {
+  background: rgba(var(--filter-rgb), 0.45);
+}
