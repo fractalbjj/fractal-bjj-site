@@ -1,6 +1,6 @@
 ---
 name: Offensive Wrestling System
-coreProblem: How do you win the standing exchange and put the opponent on the bottom?
+coreProblem: Win the standing exchange and put the opponent on the bottom.
 summary: Reactive and proactive shot selection, hand fighting, and the chains that flow from each entry.
 ---
 

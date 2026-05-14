@@ -1,6 +1,6 @@
 ---
 name: Pin Submissions
-coreProblem: From a pin, what are the highest-percentage submissions and how do you prioritise between them?
+coreProblem: Expose, threaten and finish submissions from dominant positions whilst balancing the likelihood of finishing against the positional control cost.
 summary: Strangulations and joint locks available from pinning positions, and the logic for choosing between them.
 ---
 

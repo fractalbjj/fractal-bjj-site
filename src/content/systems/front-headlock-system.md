@@ -1,6 +1,6 @@
 ---
 name: Front Headlock System
-coreProblem: How do you punish a downed opponent's posture to take the back, secure a pin, or finish a guillotine?
+coreProblem: Attack submissions, secure a pin, or circle to the back.
 summary: Front headlock control, attack hierarchy, and the transitions out of it.
 ---
 

@@ -1,6 +1,6 @@
 ---
 name: Front Headlock Defence
-coreProblem: When the opponent has a front headlock, how do you posture up, escape, or counter?
+coreProblem: Protect the neck and deny circling to the back take or pin breakdowns whilst setting up escapes and counters.
 summary: Defending the guillotine, the darce, and the back-take — and the choices between them.
 ---
 

@@ -1,6 +1,6 @@
 ---
 name: Pin Submission Escapes
-coreProblem: When a submission is being applied from a pin, how do you defend without making the position worse?
+coreProblem: Defend submission attempts from bad positions whilst facilitating escapes.
 summary: Defending strangulations and joint locks while pinned, without compromising the underlying escape.
 ---
 

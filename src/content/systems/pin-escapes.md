@@ -1,6 +1,6 @@
 ---
 name: Pin Escapes
-coreProblem: When pinned, how do you re-establish guard or get back to a neutral position?
+coreProblem: Reverse the position or re-establish a guard to get back to a neutral position.
 summary: Escapes from side control, mount, knee on belly, and north–south.
 ---
 

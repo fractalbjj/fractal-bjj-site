@@ -1,6 +1,6 @@
 ---
 name: Defensive Wrestling
-coreProblem: When the opponent shoots or pressures forward, how do you avoid the takedown without giving up position?
+coreProblem: Withstand and nullify opponent's offensive wrestling to remain standing or counter takedown attempts.
 summary: Counterpart to both Offensive Wrestling and the Wrestle Up System — sprawl, downblock, whizzer, and the chains that follow.
 ---
 

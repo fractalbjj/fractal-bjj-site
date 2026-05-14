@@ -1,6 +1,6 @@
 ---
 name: Leg Lock Defence
-coreProblem: When the opponent enters the legs, how do you defend the submission and escape the entanglement?
+coreProblem: Stay safe from submissions whilst working to escape the entanglement or counter leg lock.
 summary: Hand fighting, hip rotation, and the escape sequences for each entanglement.
 ---
 

@@ -1,6 +1,6 @@
 ---
 name: Offensive Leg Lock System
-coreProblem: How do you enter, control, and finish leg entanglements?
+coreProblem: Enter, control, and finish leg entanglements.
 summary: Entanglement logic, the ashi garami family, and the modern leg lock framework.
 ---
 

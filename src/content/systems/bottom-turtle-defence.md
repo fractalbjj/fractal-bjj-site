@@ -1,6 +1,6 @@
 ---
 name: Bottom Turtle Defence
-coreProblem: From bottom turtle, how do you avoid the back-take and escape to a better position?
+coreProblem: Prevent back takes whilst escaping to a better position.
 summary: The most defensive of the systems — the smallest set of meaningful options.
 ---
 

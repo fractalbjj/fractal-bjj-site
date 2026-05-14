@@ -1,6 +1,6 @@
 ---
 name: Back Control Defence
-coreProblem: When the opponent has back control, how do you defend the choke and escape?
+coreProblem: Defend the choke and auxiliary submissions whilst escaping to an improved position.
 summary: The mirror image of the back attack system — same alignments, opposite goals.
 ---
 

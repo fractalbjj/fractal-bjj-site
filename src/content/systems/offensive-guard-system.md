@@ -1,6 +1,6 @@
 ---
 name: Offensive Guard System
-coreProblem: How do you sweep, submit, or stand up from a bottom guard position?
+coreProblem: Sweep, submit, or advance position from guard.
 summary: An open framework system covering the major guards — the principles that connect them, the sub-systems within each.
 ---
 

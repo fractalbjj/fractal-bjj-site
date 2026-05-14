@@ -1,6 +1,6 @@
 ---
 name: Pinning System
-coreProblem: Once the guard is passed, how do you maintain top control and progress towards submission?
+coreProblem: Maintain top control through transitions, apply pressure and progress towards submission.
 summary: Side control, mount, knee on belly, north–south. Holding, transitioning, isolating.
 ---
 

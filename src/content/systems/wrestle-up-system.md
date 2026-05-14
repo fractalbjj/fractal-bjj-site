@@ -1,6 +1,6 @@
 ---
 name: Wrestle Up System
-coreProblem: From a downed position, how do you stand back up and reverse the hierarchy?
+coreProblem: Stand back up or gain top position from guard or a pinned position.
 summary: Single-leg and double-leg wrestle-ups from various seated and bottom positions.
 ---
 

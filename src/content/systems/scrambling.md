@@ -1,6 +1,6 @@
 ---
 name: Scrambling
-coreProblem: When the position is unclear and both players are competing for it, how do you come out on top?
+coreProblem: Initiate chaotic dynamic sequences and end up on top or snipe a submission.
 summary: The general system that connects everything else — what to do when the position is genuinely undefined.
 ---
 

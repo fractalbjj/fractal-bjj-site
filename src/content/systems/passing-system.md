@@ -1,6 +1,6 @@
 ---
 name: Passing System
-coreProblem: How do you defeat or avoid the guard to establish a dominant top position?
+coreProblem: Circumvent the threat of an opponent's lower body and establish a dominant top position.
 summary: Loose, mid-range, and tight passing — the three ranges and how to think about each.
 ---
 
