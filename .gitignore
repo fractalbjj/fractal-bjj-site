@@ -28,3 +28,6 @@ docs/
 
 # Claude Code working directory
 .claude/
+
+# generated at build time by scripts/build-meta.mjs
+src/data/build-meta.json

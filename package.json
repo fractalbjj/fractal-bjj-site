@@ -6,8 +6,8 @@
     "node": ">=22.12.0"
   },
   "scripts": {
-    "dev": "astro dev",
-    "build": "astro build && node scripts/pagefind.js",
+    "dev": "node scripts/build-meta.mjs && astro dev",
+    "build": "node scripts/build-meta.mjs && astro build && node scripts/pagefind.js",
     "preview": "astro preview",
     "astro": "astro"
   },
